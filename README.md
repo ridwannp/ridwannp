@@ -1,4 +1,4 @@
-# Hi, I'm Ridwan Nurdiyanto 👋
+# Hi, I'm Ridwan
 
 ### Frontend Engineer | Product-minded Developer | AI & Automation
 
