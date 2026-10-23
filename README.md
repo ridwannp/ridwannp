@@ -1,9 +1,7 @@
-<div align="center">
 # Hi, I'm Ridwan
 ---
 Frontend Engineer · Product-minded Developer · AI & Automation
 Founder of Rasanara Solution Digital Partner
-</div>
 
 About Me
 ---
