@@ -1,10 +1,15 @@
-# Hi, I'm Ridwan --[Kunjungi Website Saya](https://ridwan-nurdiyanto.vercel.app/) -- Founder [Rasanara](https://rasanara.vercel.app/)
+# Hi, I'm Ridwan
+I build web applications and practical digital solutions by combining frontend engineering, product thinking, and workflow automation.
 
-### Frontend Engineer | Product-minded Developer | AI & Automation
+About Me
+---
+[Profile](https://ridwan-nurdiyanto.vercel.app/) · [Rasanara](https://rasanara.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/ridwannurdiyanto)
 
+Building practical digital solutions for business growth, automation, and AI adoption.
 I build web applications and business-oriented digital solutions, combining frontend engineering with product thinking and technical leadership experience.
 
-My background spans frontend development, product ownership, and technical leadership. I enjoy translating business requirements into maintainable software and exploring practical ways to improve workflows through automation and AI integration.
+My background spans frontend development, product ownership, and technical leadership. 
+I enjoy translating business requirements into maintainable software and exploring practical ways to improve workflows through automation and AI integration.
 
 ### Tech Stack
 
