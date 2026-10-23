@@ -8,11 +8,12 @@ My background spans frontend development, product ownership, and technical leade
 
 ### Tech Stack
 
-- **Frontend:** React.js, Next.js, JavaScript, TypeScript
-- **UI & State Management:** Tailwind CSS, Material UI, Ant Design, Redux Toolkit
-- **Integration:** REST APIs, authentication, role-based access control
-- **Tools & Platforms:** Git, GitHub, Vercel
-- **Exploring:** AI-powered applications, LLM integration, workflow automation, and modern web architecture
+- Frontend Development: React.js, Next.js, JavaScript, TypeScript
+- UI & State Management: Tailwind CSS, Material UI, Ant Design, Redux Toolkit
+- API & Integration: REST APIs, JWT, Role-Based Access Control (RBAC)
+- Product Management: Jira, Trello, Confluence, Product Backlog Management, Requirements Gathering, User Story Mapping
+- Agile & Delivery: Scrum, Sprint Planning, Daily Stand-ups, Sprint Review, Retrospectives, Backlog Refinement, UAT
+- AI & Automation: ChatGPT, Claude, AI-assisted development, n8n workflow automation, LLM integration
 
 ### Areas of Interest
 
