@@ -1,5 +1,9 @@
+<div align="center">
 # Hi, I'm Ridwan
-I build web applications and practical digital solutions by combining frontend engineering, product thinking, and workflow automation.
+---
+Frontend Engineer · Product-minded Developer · AI & Automation
+Founder of Rasanara Solution Digital Partner
+</div>
 
 About Me
 ---
