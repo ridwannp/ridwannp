@@ -1,0 +1,65 @@
+.container {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.pill {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+  line-height: 1;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.pill:hover {
+  border-color: var(--ink);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.pillActive {
+  background-color: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
+.pillActive:hover {
+  background-color: var(--ink);
+  color: #ffffff;
+}
+
+@media (max-width: 760px) {
+  .container {
+    top: 56px;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .pill {
+    font-size: 13px;
+    padding: 6px 11px;
+  }
+}

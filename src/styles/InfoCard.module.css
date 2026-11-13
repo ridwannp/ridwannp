@@ -1,0 +1,241 @@
+.panel {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(650px, 44%);
+  max-height: 84%;
+  z-index: 25;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  padding-left: max(20px, env(safe-area-inset-left));
+}
+
+.card {
+  background: rgba(253, 252, 250, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  max-height: 84dvh;
+  pointer-events: auto;
+  width: 100%;
+  transition: opacity 0.3s ease;
+  -webkit-overflow-scrolling: touch;
+}
+
+.when {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.2;
+  color: #2a2620;
+  margin: 0;
+}
+
+.pointsList {
+  margin: 0;
+  padding-left: 1.15em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #3a362e;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  background-color: var(--bg);
+  border-radius: 999px;
+  padding: 5px 12px;
+  line-height: 1;
+  color: var(--muted);
+}
+
+/* Door card specific */
+.doorText {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.doorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btnDark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--ink);
+  color: #ffffff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 22px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  line-height: 1;
+}
+
+.btnDark:hover {
+  opacity: 0.85;
+}
+
+.btnDark:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 22px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  line-height: 1;
+}
+
+.btnOutline:hover {
+  background-color: rgba(21, 19, 15, 0.06);
+}
+
+.btnOutline:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.emailText {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  user-select: text;
+  letter-spacing: 0.01em;
+}
+
+.copyBtn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: border-color 0.15s ease, color 0.15s ease;
+  line-height: 1;
+}
+
+.copyBtn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.copyBtn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .panel {
+    top: 98px;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    padding: 0 max(12px, env(safe-area-inset-left));
+    max-height: calc(46% - 104px);
+    align-items: flex-start;
+    padding-top: 2px;
+  }
+
+  .card {
+    padding: 16px 18px;
+    gap: 10px;
+    max-height: calc(46dvh - 60px);
+    border-radius: 12px;
+  }
+
+  .role {
+    font-size: 1.5rem;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+  }
+
+  .pointsList {
+    font-size: 0.9rem;
+    gap: 4px;
+  }
+
+  .tag {
+    font-size: 12px;
+  }
+
+  .btnDark,
+  .btnOutline {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+}

@@ -1,0 +1,61 @@
+.downloadBtn {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--ink);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(21, 19, 15, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1;
+}
+
+.downloadBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(21, 19, 15, 0.28);
+}
+
+.downloadBtn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.desktopText {
+  display: inline;
+}
+
+.mobileText {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .downloadBtn {
+    padding: 9px 14px;
+    font-size: 13px;
+    gap: 4px;
+  }
+  .desktopText {
+    display: none;
+  }
+  .mobileText {
+    display: inline;
+  }
+}
+
