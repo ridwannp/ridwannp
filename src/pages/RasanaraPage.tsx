@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HERO_COPY, NAV_COPY } from '../content/rasanara';
-import { TopBar } from '../components/rasanara/TopBar';
 import { Hero } from '../components/rasanara/Hero';
 import { ProblemsSection } from '../components/rasanara/ProblemsSection';
 import { ProcessTimeline } from '../components/rasanara/ProcessTimeline';
@@ -9,9 +8,19 @@ import { ServicesIndex } from '../components/rasanara/ServicesIndex';
 import { PrinciplesSpotlight } from '../components/rasanara/PrinciplesSpotlight';
 import { RasaNarasi } from '../components/rasanara/RasaNarasi';
 import { ContactSection } from '../components/rasanara/ContactSection';
+import styles from '../styles/JourneyPage.module.css';
+import { DownloadCvButton } from '@/components/DownloadCvButton';
 
-export const RasanaraPage: React.FC = () => {
+interface RasanaraPageProps {
+  cvUrl?: string;
+}
+
+
+export const RasanaraPage: React.FC<RasanaraPageProps> = ({
+  cvUrl = '/cv.pdf'
+}) => {
   // Update document title and meta description dynamically
+
   useEffect(() => {
     const originalTitle = document.title;
     document.title = 'Rasanara – Digital Partner';
@@ -54,7 +63,11 @@ export const RasanaraPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FBFAF7] text-[#15120F] font-sans selection:bg-[#8B1538]/15 selection:text-[#8B1538] overflow-x-clip">
       {/* Fixed Top Bar */}
-      <TopBar />
+      {/* <TopBar /> */}
+      <DownloadCvButton cvUrl={cvUrl} />
+      <Link to="/" className={styles.backLink} aria-label="Kembali ke halaman utama teras">
+        ← Teras
+      </Link>
 
       {/* Main Content */}
       <main id="main-content">
@@ -99,7 +112,7 @@ export const RasanaraPage: React.FC = () => {
               {NAV_COPY.backToTerrace}
             </Link>
             <Link
-              to="/cv"
+              to="/profile"
               className="hover:text-[#8B1538] transition-colors focus-visible:outline-2 focus-visible:outline-[#8B1538] rounded"
             >
               {NAV_COPY.toCv}

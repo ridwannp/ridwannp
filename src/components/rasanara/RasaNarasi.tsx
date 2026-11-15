@@ -114,20 +114,10 @@ export const RasaNarasi: React.FC = () => {
         </div>
 
         {/* Story Paragraph */}
-        <Reveal delayIndex={3} className="my-8 sm:my-12">
-          <p className="font-sans text-sm sm:text-base md:text-lg text-[#15120F] leading-relaxed max-w-3xl">
+        <Reveal delayIndex={3} className="my-4 sm:my-8">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-[#15120F] leading-relaxed max-w-6xl">
             {RASA_NARASI_CONTENT.paragraph}
           </p>
-        </Reveal>
-
-        {/* Dashed Case Study Notice */}
-        <Reveal delayIndex={4}>
-          <div className="p-5 sm:p-6 rounded-2xl border-2 border-dashed border-[#E4DED3] bg-transparent flex items-start gap-3">
-            <span className="w-2 h-2 rounded-full bg-[#D4AF37] mt-1.5 shrink-0" aria-hidden="true" />
-            <p className="font-sans text-xs sm:text-sm text-[#6B6458] leading-relaxed italic">
-              {RASA_NARASI_CONTENT.caseStudyNotice}
-            </p>
-          </div>
         </Reveal>
       </div>
     </section>

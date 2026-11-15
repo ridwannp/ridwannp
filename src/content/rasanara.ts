@@ -37,11 +37,11 @@ export const NAV_COPY = {
 };
 
 export const HERO_COPY = {
-  eyebrow: 'Rasanara · Bussiness Growth Partner',
-  title: 'Memahami masalahnya. Membangun sistemnya. Mengotomatiskan pekerjaannya.',
+  eyebrow: 'Rasanara Digital Bussiness Growth Partner',
+  title: 'Memahami masalah bisnisnya. Membangun sistemnya. Meningkatkan efisiensinya',
   subtitle:
     'Rasanara membantu bisnis mengubah tantangan operasional menjadi sistem digital, otomasi, dan solusi berbasis AI yang praktis.',
-  primaryCta: 'Ceritakan proses yang paling merepotkan',
+  primaryCta: 'Ceritakan masalah bisnis Anda',
   primaryCtaHref: '#mulai',
   secondaryCta: 'Lihat cara kerja',
   secondaryCtaHref: '#cara',
@@ -52,79 +52,82 @@ export const HERO_COPY = {
 };
 
 export const PROBLEMS_CONTENT = {
-  sectionEyebrow: 'Tantangan operasional',
-  sectionTitle: 'Masalah nyata yang sering ditemui di lapangan',
-  note: 'Tidak semua masalah membutuhkan AI. Banyak yang cukup selesai dengan proses yang lebih baik, aplikasi sederhana, atau integrasi dasar.',
+  sectionEyebrow: 'Peluang perbaikan dalam proses bisnis',
+  sectionTitle: 'Tantangan operasional yang dihadapi bisnis setiap hari',
+  note: 'Masalah setiap bisnis berbeda, kami hadir dengan solusi digital yang tepat untuk menyederhanakan dan mengoptimalkan proses kerja.',
   segments: [
     {
-      id: 'manufaktur',
-      title: 'Manufaktur dan pabrik',
+      id: 'pendidikan',
+      title: 'Pendidikan & Sekolah',
       pains: [
-        'pencatatan inventory manual',
-        'data stok tidak sinkron antarbagian',
-        'monitoring produksi dan operasional sulit dipantau',
-        'laporan tersebar di banyak tempat',
-        'pembelian dan pengeluaran barang tidak tercatat rapi',
+        'Data siswa dan administrasi akademik belum terintegrasi.',
+        'Pencatatan administrasi pembayaran masih manual',
+        'Komunikasi sekolah dan orang tua belum terpusat',
+        'Rekapitulasi nilai, absensi, dan laporan akademik tidak efisien',
+        'Proses penerimaan siswa baru belum terotomatisasi'
+      ],
+    },
+    {
+      id: 'manufaktur',
+      title: 'Manufaktur dan Pabrik',
+      pains: [
+        'Pencatatan bahan baku dan persediaan masih dilakukan secara manual.',
+        'Data stok antara gudang, produksi, dan pembelian sering tidak sesuai',
+        'Progres produksi dan penggunaan bahan baku sulit dipantau secara langsung',
+        'Pembelian, barang masuk, dan barang keluar tidak tercatat dalam satu sistem',
+        'Laporan produksi dan operasional membutuhkan waktu lama untuk dikumpulkan',
       ],
     },
     {
       id: 'umkm',
-      title: 'UMKM yang sudah berjalan',
+      title: 'UMKM dan Bisnis Retail',
       pains: [
-        'proses bergantung pada spreadsheet dan chat',
-        'pemilik sulit melihat kondisi bisnis secara utuh',
-        'operasional makin kompleks, kontrol makin sulit',
-        'keputusan diambil tanpa data memadai',
+        'Penjualan dari berbagai platform belum tercatat dalam satu tempat',
+        'Pemilik kesulitan mengetahui produk yang paling laku dan paling menguntungkan',
+        'Stok sering tidak sesuai dengan jumlah barang yang sebenarnya tersedia',
+        'Pencatatan pemasukan, pengeluaran, dan keuntungan masih tersebar',
+        'Rekap penjualan dan laporan usaha masih bergantung pada pekerjaan manual'
       ],
     },
     {
       id: 'layanan',
-      title: 'Bisnis layanan dan reservasi',
+      title: 'Bisnis Jasa dan Reservasi',
       pains: [
-        'booking dan jadwal bentrok',
-        'data pelanggan tersebar',
-        'pembayaran dan rekonsiliasi memakan waktu',
-        'pelaporan operasional manual',
+        'Permintaan pelanggan masuk dari WhatsApp, media sosial, dan platform lainnya',
+        'Jadwal reservasi dan ketersediaan layanan sering mengalami bentrok.',
+        'Konfirmasi pembayaran dan pemesanan harus dilakukan satu per satu',
+        'Riwayat pelanggan dan status layanan sulit dilacak',
+        'Tindak lanjut kepada calon pelanggan sering terlewat karena tidak ada pengingat otomatis'
       ],
-    },
-    {
-      id: 'ecommerce',
-      title: 'Seller live dan e-commerce',
-      pains: [
-        'stok tidak sinkron antar kanal',
-        'kesiapan stok sebelum live tidak terpantau',
-        'performa penjualan lintas marketplace sulit dibandingkan',
-        'harga kompetitor dipantau manual',
-      ],
-    },
+    }
   ] as Segment[],
 };
 
 export const PROCESS_CONTENT = {
   sectionEyebrow: 'Metodologi',
-  sectionTitle: 'Cara kami bekerja bersama Anda',
+  sectionTitle: 'Bagaimana kami mengembangkan solusi untuk bisnis Anda',
   intro:
-    'Kami mulai dari ruang lingkup kecil dan menetapkan titik awal pengukuran sebelum membicarakan hasil.',
+    'Kami mengidentifikasi masalah utama, menentukan solusi yang relevan, dan memastikan setiap langkah memberikan dampak nyata bagi bisnis.',
   steps: [
     {
       number: '01',
       title: 'Memahami',
-      detail: 'discovery dan audit proses untuk memetakan alur kerja serta kendala di lapangan.',
+      detail: 'Mengenali kebutuhan bisnis, memetakan proses kerja, dan mengidentifikasi kendala operasional.',
     },
     {
       number: '02',
       title: 'Merancang',
-      detail: 'ruang lingkup, alur kerja, prioritas, kriteria penerimaan.',
+      detail: 'Menyusun konsep solusi, menentukan prioritas, dan merancang alur kerja sesuai kebutuhan bisnis.',
     },
     {
       number: '03',
-      title: 'Mencoba',
-      detail: 'pilot kecil pada proses nyata.',
+      title: 'Mengembangkan',
+      detail: 'Membangun dan menguji solusi dalam lingkup terukur sebelum diterapkan secara menyeluruh.',
     },
     {
       number: '04',
-      title: 'Menjalankan',
-      detail: 'implementasi, serah terima dengan dokumentasi dan pelatihan, optimasi dan pemeliharaan.',
+      title: 'Mengoptimalkan',
+      detail: 'Menerapkan solusi, memberikan dokumentasi dan pelatihan, serta melakukan evaluasi dan pengembangan berkelanjutan.',
     },
   ] as ProcessStep[],
 };
@@ -133,44 +136,38 @@ export const SERVICES_CONTENT = {
   sectionEyebrow: 'Ruang lingkup',
   sectionTitle: 'Layanan',
   subtitle:
-    'Solusi disesuaikan dengan kebutuhan nyata bisnis Anda, tanpa penambahan fitur berlebihan.',
+    'Solusi dirancang berdasarkan kebutuhan dan prioritas bisnis untuk memastikan penerapan yang tepat guna dan berkelanjutan.',
   services: [
     {
       number: '01',
-      title: 'Audit proses digital',
+      title: 'Website & Digital Presence',
       description:
-        'Memetakan alur kerja saat ini untuk menemukan bagian yang membuang waktu dan rentan kekeliruan.',
+        'Membangun website profesional untuk memperkuat identitas, informasi, dan kehadiran digital bisnis.',
     },
     {
       number: '02',
-      title: 'Digitalisasi alur kerja',
+      title: 'Custom Business Applications',
       description:
-        'Menggantikan pencatatan kertas dan spreadsheet lepas menjadi sistem kerja terpadu.',
+        'Mengembangkan aplikasi berbasis web untuk mendukung kebutuhan dan proses operasional bisnis.',
     },
     {
       number: '03',
-      title: 'Aplikasi web dan dashboard',
+      title: 'Dashboard & Business Intelligence',
       description:
-        'Membangun perangkat lunak internal yang menyajikan data operasional secara jelas dan terpusat.',
+        'Mengubah data operasional menjadi informasi yang lebih terstruktur untuk mendukung pengambilan keputusan.',
     },
     {
       number: '04',
-      title: 'Otomasi dan integrasi AI',
+      title: 'Workflow & Task Automation',
       description:
-        'Menyederhanakan tugas berulang dan memanfaatkan kecerdasan buatan untuk mengolah informasi kontekstual.',
+        'Mengurangi pekerjaan berulang melalui otomatisasi alur kerja dan pertukaran informasi antarproses.',
     },
     {
       number: '05',
-      title: 'Integrasi API dan sistem',
+      title: 'AI Solutions & AI Agents',
       description:
-        'Menghubungkan berbagai kanal dan aplikasi agar data mengalir lancar tanpa masukan berulang.',
-    },
-    {
-      number: '06',
-      title: 'Pemeliharaan dan optimasi',
-      description:
-        'Menjaga keandalan sistem, pembaruan berkala, serta penyesuaian seiring pertumbuhan bisnis.',
-    },
+        'Mengimplementasikan AI untuk membantu pemrosesan informasi, pencarian pengetahuan, dan pekerjaan operasional.',
+    }
   ] as ServiceItem[],
 };
 
@@ -179,24 +176,24 @@ export const PRINCIPLES_CONTENT = {
   sectionTitle: 'Cara kami berpikir',
   principles: [
     {
-      title: 'Masalah dulu, teknologi kemudian.',
+      title: 'Setiap Bisnis Punya Cerita',
       description:
-        'Kami tidak memaksakan alat canggih bila alur proses dasarnya belum tertata rapi.',
+        'Kami percaya setiap bisnis punya perjalanan, tantangan, dan cara kerja yang berbeda.',
     },
     {
-      title: 'AI hanya bila diperlukan.',
+      title: 'Dengarkan Sebelum Memberi Solusi',
       description:
-        'Solusi cerdas hanya berguna jika menyelesaikan friksi nyata, bukan sekadar mengikuti tren sesaat.',
+        'Memahami apa yang benar-benar dibutuhkan jauh lebih penting daripada terburu-buru menawarkan solusi.',
     },
     {
-      title: 'Biaya dijelaskan sejak awal.',
+      title: 'Teknologi Harus Memudahkan',
       description:
-        'Ruang lingkup dan estimasi investasi disampaikan transparan tanpa biaya tersembunyi di tengah jalan.',
+        'Teknologi hadir untuk membantu pekerjaan manusia, bukan membuatnya semakin rumit.',
     },
     {
-      title: 'Data tetap milik Anda.',
+      title: 'Tumbuh Bersama, Bukan Sekadar Selesai',
       description:
-        'Seluruh aset, basis data, dan dokumentasi sistem diserahkan penuh untuk kedaulatan bisnis Anda.',
+        'Hubungan baik tidak berhenti ketika proyek selesai. Kami ingin solusi yang dibangun terus memberi manfaat seiring bisnis berkembang.',
     },
   ] as PrincipleItem[],
 };
@@ -206,11 +203,11 @@ export const RASA_NARASI_CONTENT = {
   titleWord1: 'Rasa',
   titleWord2: 'Narasi',
   rasaDefinition:
-    'Rasa = memahami kebutuhan dan pengalaman manusia di balik sebuah masalah.',
+    'Rasa adalah tentang memahami bisnis, kebutuhan, dan tantangan di balik setiap proses kerja.',
   narasiDefinition:
-    'Narasi = menerjemahkannya menjadi solusi dan pengalaman digital yang bisa dipakai.',
+    'Narasi adalah tentang menerjemahkan pemahaman tersebut menjadi langkah dan solusi nyata melalui teknologi.',
   paragraph:
-    'Teknologi hanya alat untuk menyelesaikan masalah orang, bukan sesuatu yang dijual karena sedang tren. Rasanara adalah bagian berikutnya dari perjalanan Ridwan Nurdiyanto: membawa pengalaman sembilan tahun membangun sistem enterprise ke bisnis yang lebih dekat.',
+    'Kami percaya teknologi bukan tujuan akhir. Teknologi adalah salah satu cara untuk membantu bisnis bekerja lebih baik, lebih efisien, dan terus berkembang. Rasanara adalah bagian berikutnya dari perjalanan Founder membawa pengalaman sembilan tahun membangun sistem enterprise ke bisnis yang lebih dekat.',
   caseStudyNotice:
     'Studi kasus akan dipublikasikan setelah ada hasil yang terukur dan izin dari klien.',
 };

@@ -42,7 +42,7 @@ export const Hero: React.FC = () => {
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1538]/10 border border-[#8B1538]/20 mb-4 sm:mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" aria-hidden="true" />
-              <span className="text-xs font-sans font-medium tracking-wide text-[#8B1538] uppercase">
+              <span className="text-xs font-sans font-medium tracking-wide text-[#8B1538]">
                 {HERO_COPY.eyebrow}
               </span>
             </div>

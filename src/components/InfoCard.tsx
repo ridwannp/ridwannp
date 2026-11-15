@@ -75,17 +75,12 @@ function DoorContent({
         <a href={`mailto:${email}`} className={styles.btnDark}>
           Kirim email
         </a>
+        <button type="button" onClick={handleCopy} className={styles.btnOutline}>
+          {copyLabel}
+        </button>
         <a href={rasanaraUrl} className={styles.btnOutline}>
           Lihat Rasanara
         </a>
-      </div>
-      <div className={styles.emailRow}>
-        <span ref={emailRef} className={styles.emailText} aria-label={`Alamat email: ${email}`}>
-          {email}
-        </span>
-        <button className={styles.copyBtn} onClick={handleCopy} aria-live="polite">
-          {copyLabel}
-        </button>
       </div>
     </>
   );

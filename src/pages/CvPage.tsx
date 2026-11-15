@@ -5,7 +5,6 @@ import { useJourneyScroll } from '../hooks/useJourneyScroll';
 import { JOURNEY_INTRO, STOPS } from '../data/journey';
 import { DownloadCvButton } from '../components/DownloadCvButton';
 import { YearPills } from '../components/YearPills';
-import { CharacterToggle } from '../components/CharacterToggle';
 import { InfoCard } from '../components/InfoCard';
 import styles from '../styles/JourneyPage.module.css';
 import '../styles/tokens.css';
@@ -30,7 +29,7 @@ const CvPage: React.FC<CvPageProps> = ({
   const sceneHostRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const { activeStop, characterStyle, setCharacterStyle, webGlFailed, scrollToStop } =
+  const { activeStop, webGlFailed, scrollToStop } =
     useJourneyScroll({
       trackRef,
       stageRef,
@@ -51,7 +50,6 @@ const CvPage: React.FC<CvPageProps> = ({
     <div className={styles.outer}>
       {/* Fixed download button */}
       <DownloadCvButton cvUrl={cvUrl} />
-
       {/* Back link */}
       <Link to="/" className={styles.backLink} aria-label="Kembali ke halaman utama teras">
         ← Teras
@@ -63,7 +61,7 @@ const CvPage: React.FC<CvPageProps> = ({
         <h1 id="journey-h1" className={styles.h1}>
           {JOURNEY_INTRO.h1}
         </h1>
-        <p className={styles.lede}>{JOURNEY_INTRO.lede}</p>
+        <p className={styles.lede}>{JOURNEY_INTRO.lede} {JOURNEY_INTRO.description}</p>
         <div className={styles.chips} aria-label="Latar belakang singkat">
           {JOURNEY_INTRO.chips.map((chip) => (
             <span key={chip} className={styles.chip}>
@@ -106,12 +104,9 @@ const CvPage: React.FC<CvPageProps> = ({
             email={email}
             rasanaraUrl={rasanaraUrl}
           />
-
-          {/* Character Style Toggle: bottom-left */}
-          <CharacterToggle current={characterStyle} onChange={setCharacterStyle} />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -4,6 +4,12 @@ import Terrace from './components/Terrace';
 import CvPage from './pages/CvPage';
 import RasanaraPage from './pages/RasanaraPage';
 import KaryaPage from './pages/KaryaPage';
+import CaseStudyPage from './pages/CaseStudyPage';
+import { PlaygroundPage } from './playground/pages/PlaygroundPage';
+import { Kenali } from './playground/pages/Kenali';
+import { KenaliResult } from './playground/pages/KenaliResult';
+import { ProductsList } from './playground/pages/ProductsList';
+import { ProductDetail } from './playground/pages/ProductDetail';
 
 export const App: React.FC = () => {
   return (
@@ -17,9 +23,20 @@ export const App: React.FC = () => {
       >
         <Routes>
           <Route path="/" element={<Terrace />} />
+          <Route path="/profile" element={<CvPage />} />
           <Route path="/cv" element={<CvPage />} />
           <Route path="/rasanara" element={<RasanaraPage />} />
           <Route path="/karya" element={<KaryaPage />} />
+          <Route path="/karya/:slug" element={<CaseStudyPage />} />
+
+          {/* Digital Playground */}
+          <Route path="/playground" element={<PlaygroundPage />} />
+          <Route path="/playground/kenali" element={<Kenali />} />
+          <Route path="/playground/kenali/hasil" element={<KenaliResult />} />
+          <Route path="/playground/kenali/hasil/:id" element={<KenaliResult />} />
+          <Route path="/playground/produk" element={<ProductsList />} />
+          <Route path="/playground/produk/:slug" element={<ProductDetail />} />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
@@ -28,4 +45,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-

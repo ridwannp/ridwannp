@@ -1,0 +1,461 @@
+/* Playground Base Styles & Design Tokens */
+.container {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: rgba(251, 250, 247, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  padding: 0.875rem 0;
+}
+
+.topBarContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.backTeras {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.375rem 0.625rem;
+  border-radius: 9999px;
+  background-color: #f1ede4;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.backTeras:hover {
+  color: var(--ink);
+  background-color: #e5ded2;
+}
+
+.subnavTabs {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ede8dc;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  gap: 0.25rem;
+}
+
+.tabLink {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tabLink:hover {
+  color: var(--ink);
+}
+
+.tabActive {
+  background-color: var(--card);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Page Headers */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.pageTitle {
+  font-family: var(--font-quote);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 1rem 0;
+  font-weight: 400;
+}
+
+.pageLede {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 0 2rem 0;
+}
+
+/* Principle Quote Box */
+.quoteBox {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 2rem 0;
+  font-family: var(--font-quote);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+}
+
+.badgeTinggi {
+  background-color: rgba(139, 21, 56, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(139, 21, 56, 0.2);
+}
+
+.badgePerhatian {
+  background-color: rgba(180, 83, 9, 0.1);
+  color: #b45309;
+  border: 1px solid rgba(180, 83, 9, 0.2);
+}
+
+.badgePeluang {
+  background-color: rgba(71, 85, 105, 0.1);
+  color: #475569;
+  border: 1px solid rgba(71, 85, 105, 0.2);
+}
+
+.badgeFormat {
+  background-color: #f1ede4;
+  color: var(--muted);
+}
+
+.badgeGratis {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.badgeBerbayar {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+/* Process Map Component */
+.processMapContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.processMapNode {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.nodeTitle {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.nodeSublabel {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.nodePills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.625rem;
+}
+
+.nodeFindingPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .processMapContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Finding Card */
+.findingCard {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.findingHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.findingTitle {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.findingIndication {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.factsBox {
+  background-color: #f7f5ef;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.factsTitle {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.375rem;
+}
+
+.stepsList {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.digitalOpportunity {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: #fbf6ec;
+  border: 1px dashed #d5c8b0;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: #634f27;
+}
+
+/* Product Card */
+.productCard {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.productCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.featuredBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--gold);
+  border-radius: 8px 8px 0 0;
+}
+
+.productHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.productBadges {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.productTitle {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.35;
+}
+
+.productSummary {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.productFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 0.875rem;
+  margin-top: auto;
+}
+
+.productPrice {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.productCtaLink {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Question Option Cards */
+.optionCard {
+  width: 100%;
+  min-height: 56px;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background-color: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.optionCard:hover:not(:disabled) {
+  border-color: #c5beb1;
+  background-color: #faf8f3;
+}
+
+.optionSelected {
+  border-color: var(--accent);
+  background-color: rgba(139, 21, 56, 0.04);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.optionDisabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background-color: #f5f3ee;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .topBar,
+  .footer,
+  .noPrint,
+  button,
+  .btnWhatsApp,
+  .actionButtons {
+    display: none !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .findingCard,
+  .quoteBox,
+  .processMapNode {
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  .processMapContainer {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+

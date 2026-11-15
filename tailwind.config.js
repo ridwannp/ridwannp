@@ -23,8 +23,13 @@ export default {
       animation: {
         'marquee-left': 'marqueeLeft 35s linear infinite',
         'marquee-right': 'marqueeRight 35s linear infinite',
+        cloudDrift: 'cloudDrift 80s linear infinite',
       },
       keyframes: {
+        cloudDrift: {
+          '0%': { transform: 'translateX(-10%)' },
+          '100%': { transform: 'translateX(120vw)' },
+        },
         marqueeLeft: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },

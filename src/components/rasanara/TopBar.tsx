@@ -6,8 +6,8 @@ export const TopBar: React.FC = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FBFAF7]/90 backdrop-blur-md border-b border-[#E4DED3] transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-3.5 flex items-center justify-between gap-3"
-           style={{ paddingTop: 'max(0.875rem, env(safe-area-inset-top))' }}>
-        
+        style={{ paddingTop: 'max(0.875rem, env(safe-area-inset-top))' }}>
+
         {/* Left: Navigation back links */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <Link
@@ -16,13 +16,6 @@ export const TopBar: React.FC = () => {
             aria-label="Kembali ke halaman Teras"
           >
             {NAV_COPY.backToTerrace}
-          </Link>
-          <span className="text-[#E4DED3] select-none" aria-hidden="true">/</span>
-          <Link
-            to="/cv"
-            className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-sans font-medium text-[#6B6458] hover:text-[#8B1538] transition-colors focus-visible:outline-2 focus-visible:outline-[#8B1538] rounded-md px-1"
-          >
-            {NAV_COPY.toCv}
           </Link>
         </div>
 

@@ -6,15 +6,14 @@ interface HeroHeadlineProps {
 
 export const HeroHeadline: React.FC<HeroHeadlineProps> = memo(({ prefersReducedMotion = false }) => {
   const words = [
-    'Think',
-    'like',
-    'a',
-    'product',
-    'owner.',
-    'Build',
-    'like',
-    'an',
-    'engineer',
+    'Haiii!',
+    'Selamat',
+    'datang',
+    'di',
+    'ruang',
+    'digital',
+    'saya.'
+
   ];
 
   const [mounted, setMounted] = useState(false);
@@ -57,8 +56,10 @@ export const HeroHeadline: React.FC<HeroHeadlineProps> = memo(({ prefersReducedM
         })}
       </h1>
       <p className="mt-3 font-sans text-xs md:text-sm text-[#8F879A] font-medium tracking-wide">
-        Teras perjumpaan · Pilih lentera untuk membuka ruang
+        Tempat saya berbagi perjalanan, pengalaman, karya, dan berbagai hal yang sedang saya bangun di dunia teknologi.
       </p>
+      <p className="mt-3 font-sans text-xs md:text-sm text-[#8F879A] font-medium tracking-wide">
+        Nyalakan lampu, temukan ruang untuk dijelajahi.</p>
     </div>
   );
 });

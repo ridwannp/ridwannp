@@ -61,20 +61,6 @@ export const ContactSection: React.FC = () => {
             )}
           </div>
         </Reveal>
-
-        {/* Direct email info */}
-        <Reveal delayIndex={3}>
-          <div className="mb-14">
-            <span className="text-xs font-sans text-[#6B6458] block mb-1">Kontak langsung</span>
-            <a
-              href={mailtoUrl}
-              className="text-xs sm:text-sm font-sans font-medium text-[#C9BDA5] hover:text-white underline underline-offset-4 transition-colors"
-            >
-              {EMAIL}
-            </a>
-          </div>
-        </Reveal>
-
         {/* Decorative gold divider */}
         <div className="w-16 h-[1px] bg-[#D4AF37]/50 mx-auto my-8" aria-hidden="true" />
 

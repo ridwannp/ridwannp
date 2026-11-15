@@ -5,6 +5,10 @@
   --line: #e2ded3;
   --card: #fdfcfa;
 
+  --accent: #8b1538;
+  --accent-hover: #741230;
+  --gold: #d4af37;
+
   --font-display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-quote: "Instrument Serif", Georgia, serif;

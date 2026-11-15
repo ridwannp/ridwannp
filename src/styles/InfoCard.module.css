@@ -1,9 +1,9 @@
 .panel {
   position: absolute;
-  left: 5%;
+  left: 3%;
   top: 50%;
   transform: translateY(-50%);
-  width: min(650px, 44%);
+  width: min(700px, 44%);
   max-height: 84%;
   z-index: 25;
   pointer-events: none;

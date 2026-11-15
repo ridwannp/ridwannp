@@ -126,8 +126,83 @@ ridwannp/
 │   └── pages/
 │       ├── CvPage.tsx           # Halaman /cv (Perjalanan 3D tangga berundak)
 │       ├── RasanaraPage.tsx     # Halaman /rasanara (Partner Digital & Rekayasa Sistem)
-│       └── KaryaPage.tsx        # Halaman /karya (Portofolio Rekayasa)
+│       ├── KaryaPage.tsx        # Halaman /karya (Kota 3D & Indeks Tipografi)
+│       └── CaseStudyPage.tsx    # Halaman /karya/:slug (Editorial Studi Kasus)
 ```
+
+---
+
+## Konfigurasi Halaman Karya (`/karya` & `/karya/:slug`)
+
+Halaman Karya merepresentasikan setiap proyek sebagai bangunan di sebuah kota 3D arsitektur pagi hari, di mana bentuk bangunan secara visual mencerminkan statusnya:
+- **Dibangun (`built`)**: Bangunan penuh dengan jendela kaca memantulkan langit dan sebagian menyala hangat, bilah/sirip aksen (burgundy, emas, atau kayu), lis atap, dan ruang mesin elevator.
+- **Sedang dibangun (`building`)**: Cangkang beton bertingkat, tiang besi tulangan menjulang, pagar pengaman, dan derek konstruksi (*crane*) burgundy-emas dengan kabel dan kait yang berayun pelan.
+- **Konsep (`concept`)**: Rangka baja terbuka minimalis dengan kolom dan balok gelap, pelat lantai, serta garis hantu putus-putus (*ghost wireframe*) tipis yang menandai volume yang direncanakan.
+
+Di bawah hero terdapat indeks tipografi bernomor besar dengan filter kawasan dan status, serta tautan ke halaman studi kasus editorial `/karya/:slug`.
+
+### 1. Cara Menambah Karya Baru
+Buka file [`src/content/karya.ts`](src/content/karya.ts) dan tambahkan entri ke array `RAW_PROJECTS`:
+```typescript
+{
+  slug: 'nama-proyek-unik',
+  name: 'Judul Proyek',
+  sub: 'Klien atau Konteks Organisasi',
+  district: 1, // 0 = Enterprise, 1 = Dibangun sendiri, 2 = Eksperimen
+  status: 'built', // 'built' | 'building' | 'concept'
+  height: 2.8, // Tinggi visual gedung (2.1 s/d 3.8)
+  role: 'Frontend Developer',
+  summary: 'Penjelasan ringkas proyek dan arsitektur teknisnya.',
+  tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+  hasCaseStudy: true, // true jika memiliki halaman studi kasus lengkap
+  caseStudy: {
+    problem: 'Tantangan atau kendala teknis yang dihadapi...',
+    decisions: [
+      {
+        number: 1,
+        title: 'Judul Keputusan Arsitektur',
+        rationale: 'Alasan teknis pemilihan solusi...',
+      },
+    ],
+    lessons: [
+      'Pelajaran berharga yang dipetik dari proyek...',
+    ],
+  },
+}
+```
+> **Catatan Otomatisasi Posisi**: Posisi 3D sumbu X dan Z dihitung otomatis oleh fungsi `computeProjectPositions` (jarak antar bangunan 2.1, celah antar kawasan 1.5, dan tata letak zig-zag Z 0 / -2.0). Anda cukup menambah satu objek data tanpa mengatur koordinat 3D manual.
+
+### 2. Cara Mengubah Status Proyek
+Ubah atribut `status` pada proyek terkait di `src/content/karya.ts`:
+- `'built'`: Menjadikan gedung utuh dengan kaca, jendela menyala, dan sirip dekoratif.
+- `'building'`: Mengubahnya menjadi cangkang beton dengan tiang tulangan dan crane.
+- `'concept'`: Mengubahnya menjadi rangka baja terbuka dengan garis hantu volume.
+
+### 3. Cara Kerja Tier Kualitas (`useQualityTier`)
+Sistem secara otomatis mendeteksi kapabilitas perangkat pengguna untuk memilih tier rendering:
+- **Tier Low (Perangkat Terbatas / Layar Ponsel ≤ 640px)**:
+  - Dipicu jika: lebar layar ≤ 640px, core CPU < 4, memori perangkat < 4 GB, atau preferensi `prefers-reduced-data`.
+  - Menggunakan material Lambert ringan tanpa komputasi refleksi environment map.
+  - Pixel ratio dibatasi maksimal 1.25 untuk menjaga efisiensi baterai dan kelancaran 60 FPS.
+  - Jumlah siluet latar dan pohon disederhanakan.
+- **Tier High (Desktop & Tablet Bertenaga)**:
+  - Tone mapping filmis `ACESFilmic` dan enkripsi warna `sRGBEncoding`.
+  - Pencahayaan hemisphere (langit `#BFD9F5`, tanah `#E8DCC6`) + directional hangat `#FFE6BF`.
+  - Peta lingkungan prosedural (*procedural sky PMREM*) dibuat sekali di memori tanpa memuat file gambar eksternal, memberikan pantulan langit realistis pada kaca jendela dan baja.
+  - Bayangan kontak terpanggang (*baked contact shadow*) dan oklusi ambien palsu di pangkal dinding.
+- **Batas Anggaran Performa**:
+  - Draw Calls: ~75–90 calls (jauh di bawah batas anggaran 150 draw calls).
+  - Segitiga (Triangles): ~6.500–8.000 triangles (jauh di bawah batas 120.000 segitiga).
+  - Penghentian Render Otomatis: Render 3D otomatis dijeda ketika scroll melewati 2.4 viewport atau ketika tab browser tidak aktif (`document.hidden`).
+
+### 4. Daftar Lebar Layar yang Telah Diuji
+- **360px**: Smartphone Android kompak (layout teks vertikal di atas kota, tap target ≥ 44px, tanpa scroll horizontal).
+- **390px**: Ukuran standar iPhone 12/13/14/15/16.
+- **600px**: Split-screen / browser side panel (layout adaptif transisi sempit ke sedang).
+- **768px**: Tablet iPad mode portrait.
+- **1024px**: Tablet landscape & laptop kompak.
+- **1440px**: Monitor desktop layar lebar (layout teks hero di kiri, kota bergeser ke kanan).
+- **Mobile Landscape**: Rotasi horizontal ponsel dengan safe-area inset aktif.
 
 ---
 
