@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Digital Playground Dusk Theme & Scrollytelling Styles
+   ========================================================================== */
+
+/* Page Background Gradient */
+.pg-dusk-canvas {
+  background: linear-gradient(180deg, #160B2E 0%, #3B0F39 36%, #8B1538 66%, #E9A23B 100%);
+  min-height: 100svh;
+  color: #FFF1D6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Twinkling CSS Stars */
+.pg-stars-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 12%, rgba(255, 241, 214, 0.95), transparent),
+    radial-gradient(1.5px 1.5px at 45% 8%, rgba(255, 200, 61, 0.9), transparent),
+    radial-gradient(2px 2px at 78% 15%, rgba(79, 209, 161, 0.95), transparent),
+    radial-gradient(1px 1px at 88% 28%, rgba(255, 241, 214, 0.8), transparent),
+    radial-gradient(2px 2px at 28% 32%, rgba(255, 241, 214, 0.85), transparent),
+    radial-gradient(1.5px 1.5px at 62% 22%, rgba(255, 200, 61, 0.9), transparent),
+    radial-gradient(1px 1px at 10% 48%, rgba(255, 241, 214, 0.75), transparent),
+    radial-gradient(1.5px 1.5px at 92% 42%, rgba(79, 209, 161, 0.85), transparent);
+  animation: pgStarTwinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes pgStarTwinkle {
+  0% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+  100% { opacity: 0.7; }
+}
+
+/* Rotating SVG circular badge */
+.pg-badge-spin {
+  animation: pgBadgeRotate 18s linear infinite;
+}
+
+@keyframes pgBadgeRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bouncing Letter in H1 */
+.pg-bounce-letter {
+  display: inline-block;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) {
+  .pg-bounce-letter:hover {
+    transform: translateY(-8px) scale(1.18) rotate(4deg);
+    color: #FFC83D;
+  }
+}
+
+/* Chunky Buttons */
+.pg-chunky-btn {
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .pg-chunky-btn:hover {
+    transform: translate(-3px, -3px) rotate(-1deg);
+    box-shadow: 7px 7px 0 #1A0F24 !important;
+  }
+}
+
+.pg-chunky-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #1A0F24 !important;
+}
+
+/* Chunky Option Buttons in Booth */
+.pg-chunky-option {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+@media (hover: hover) {
+  .pg-chunky-option:hover:not([aria-checked="true"]) {
+    background-color: #FFF8E6 !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 #1A0F24 !important;
+  }
+}
+
+/* Balloon Progress Pop */
+.pg-pop-balloon {
+  animation: pgPop 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pgPop {
+  0% { transform: scale(0.6); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Mobile & Tablet Booth Adaptations */
+@media (max-width: 900px) {
+  .pg-booth-panel {
+    max-width: 100% !important;
+    margin-top: 18vh !important;
+  }
+}
+
+/* Print CSS for Result Ticket */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #1A0F24 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #pg-result-ticket,
+  #pg-result-ticket * {
+    visibility: visible;
+  }
+
+  #pg-result-ticket {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: 2px solid #1A0F24 !important;
+  }
+
+  button,
+  a {
+    display: none !important;
+  }
+}
+
+/* Reduced Motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .pg-stars-layer {
+    animation: none !important;
+  }
+  .pg-badge-spin {
+    animation: none !important;
+  }
+  .pg-chunky-btn:hover {
+    transform: none !important;
+  }
+}
+

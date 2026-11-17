@@ -5,7 +5,7 @@ import CvPage from './pages/CvPage';
 import RasanaraPage from './pages/RasanaraPage';
 import KaryaPage from './pages/KaryaPage';
 import CaseStudyPage from './pages/CaseStudyPage';
-import { PlaygroundPage } from './playground/pages/PlaygroundPage';
+import { PlaygroundPage } from './pages/PlaygroundPage';
 import { Kenali } from './playground/pages/Kenali';
 import { KenaliResult } from './playground/pages/KenaliResult';
 import { ProductsList } from './playground/pages/ProductsList';

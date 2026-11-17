@@ -103,6 +103,7 @@ const CvPage: React.FC<CvPageProps> = ({
             cardRef={cardRef}
             email={email}
             rasanaraUrl={rasanaraUrl}
+            cvUrl={cvUrl}
           />
         </div>
       </div>

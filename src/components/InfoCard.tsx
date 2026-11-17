@@ -1,4 +1,5 @@
-import React, { useRef, useState, useCallback, memo } from 'react';
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import { STOPS, YearStop, DoorStop } from '../data/journey';
 import styles from '../styles/InfoCard.module.css';
 
@@ -7,6 +8,7 @@ interface InfoCardProps {
   cardRef: React.RefObject<HTMLDivElement>;
   email?: string;
   rasanaraUrl?: string;
+  cvUrl?: string;
 }
 
 function YearContent({ stop }: { stop: YearStop }) {
@@ -36,58 +38,33 @@ function YearContent({ stop }: { stop: YearStop }) {
 function DoorContent({
   stop,
   email,
-  rasanaraUrl,
+  rasanaraUrl
 }: {
   stop: DoorStop;
   email: string;
   rasanaraUrl: string;
 }) {
-  const [copyLabel, setCopyLabel] = useState<string>('Salin email');
-  const emailRef = useRef<HTMLSpanElement>(null);
-
-  const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopyLabel('Tersalin');
-    } catch {
-      // Fallback: select text
-      if (emailRef.current) {
-        const range = document.createRange();
-        range.selectNodeContents(emailRef.current);
-        const sel = window.getSelection();
-        if (sel) {
-          sel.removeAllRanges();
-          sel.addRange(range);
-        }
-      }
-      setCopyLabel('Teks terpilih');
-    }
-
-    setTimeout(() => setCopyLabel('Salin email'), 1800);
-  }, [email]);
-
   return (
     <>
       <div className={styles.when}>{stop.when}</div>
       <h2 className={styles.role}>{stop.role}</h2>
       <p className={styles.doorText}>{stop.text}</p>
       <div className={styles.doorActions}>
+        <Link to="/" className={styles.btnOutline}>
+          ← Teras
+        </Link>
         <a href={`mailto:${email}`} className={styles.btnDark}>
           Kirim email
         </a>
-        <button type="button" onClick={handleCopy} className={styles.btnOutline}>
-          {copyLabel}
-        </button>
-        <a href={rasanaraUrl} className={styles.btnOutline}>
-          Lihat Rasanara
-        </a>
       </div>
+      {/* rasanaraUrl reserved for future use */}
+      <span data-rasanara={rasanaraUrl} style={{ display: 'none' }} aria-hidden="true" />
     </>
   );
 }
 
 export const InfoCard: React.FC<InfoCardProps> = memo(
-  ({ activeStop, cardRef, email = 'ridwannurdiyanto93@gmail.com', rasanaraUrl = '#rasanara' }) => {
+  ({ activeStop, cardRef, email = 'ridwannurdiyanto93@gmail.com', rasanaraUrl = '#rasanara', cvUrl = '/cv.pdf' }) => {
     const stop = STOPS[activeStop];
 
     return (

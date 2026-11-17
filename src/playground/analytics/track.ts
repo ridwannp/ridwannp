@@ -19,7 +19,6 @@ export type AnalyticsEvent =
 export function trackEvent(event: AnalyticsEvent): void {
   // In development, log safe non-PII events
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
     console.debug('[Playground Analytics]', event.name, event);
   }
 
