@@ -38,11 +38,13 @@ function YearContent({ stop }: { stop: YearStop }) {
 function DoorContent({
   stop,
   email,
-  rasanaraUrl
+  rasanaraUrl,
+  cvUrl,
 }: {
   stop: DoorStop;
   email: string;
   rasanaraUrl: string;
+  cvUrl?: string;
 }) {
   return (
     <>
@@ -50,12 +52,12 @@ function DoorContent({
       <h2 className={styles.role}>{stop.role}</h2>
       <p className={styles.doorText}>{stop.text}</p>
       <div className={styles.doorActions}>
-        <Link to="/" className={styles.btnOutline}>
-          ← Teras
-        </Link>
         <a href={`mailto:${email}`} className={styles.btnDark}>
           Kirim email
         </a>
+        <Link to="/" className={styles.btnOutline}>
+          ← Teras
+        </Link>
       </div>
       {/* rasanaraUrl reserved for future use */}
       <span data-rasanara={rasanaraUrl} style={{ display: 'none' }} aria-hidden="true" />
@@ -63,17 +65,29 @@ function DoorContent({
   );
 }
 
+const ACCENTS = ['#A89F91', '#FFC83D', '#E0316A', '#4FD1A1', '#8B1538'];
+
 export const InfoCard: React.FC<InfoCardProps> = memo(
   ({ activeStop, cardRef, email = 'ridwannurdiyanto93@gmail.com', rasanaraUrl = '#rasanara', cvUrl = '/cv.pdf' }) => {
     const stop = STOPS[activeStop];
+    const accent = ACCENTS[activeStop] || '#FFC83D';
 
     return (
       <div className={styles.panel} aria-live="polite">
-        <div ref={cardRef} className={styles.card} style={{ opacity: 0 }}>
+        <div
+          ref={cardRef}
+          className={styles.card}
+          style={
+            {
+              opacity: 0,
+              '--stop-accent': accent,
+            } as React.CSSProperties
+          }
+        >
           {stop.type === 'year' ? (
             <YearContent stop={stop} />
           ) : (
-            <DoorContent stop={stop} email={email} rasanaraUrl={rasanaraUrl} />
+            <DoorContent stop={stop} email={email} rasanaraUrl={rasanaraUrl} cvUrl={cvUrl} />
           )}
         </div>
       </div>

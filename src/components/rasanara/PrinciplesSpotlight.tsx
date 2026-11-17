@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PRINCIPLES_CONTENT } from '../../content/rasanara';
-import { Reveal } from './Reveal';
+import { Reveal, SplitText } from '../../ui/kit';
 
 export const PrinciplesSpotlight: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -35,21 +35,26 @@ export const PrinciplesSpotlight: React.FC = () => {
   }, []);
 
   return (
-    <section id="prinsip" className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 border-t border-[#E4DED3] bg-[#FBFAF7]">
+    <section id="prinsip" className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 border-t border-white/10 bg-transparent">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
           {/* Left: Sticky Title (Desktop only, stacked on mobile) */}
           <div className="md:col-span-5 md:sticky md:top-28">
             <Reveal>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" aria-hidden="true" />
-                <span className="text-xs font-sans font-medium uppercase tracking-widest text-[#8B1538]">
+                <span className="w-2 h-2 rounded-full bg-[#FFC83D]" aria-hidden="true" />
+                <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#FFC83D]">
                   {PRINCIPLES_CONTENT.sectionEyebrow}
                 </span>
               </div>
-              <h2 className="font-serif italic font-bold text-3xl sm:text-4xl md:text-5xl text-[#15120F] tracking-tight leading-[1.1]">
-                {PRINCIPLES_CONTENT.sectionTitle}
-              </h2>
+              <div className="mb-4">
+                <SplitText
+                  text={PRINCIPLES_CONTENT.sectionTitle}
+                  as="h2"
+                  className="text-3xl sm:text-4xl md:text-5xl text-[#FFF1D6] leading-[1.1]"
+                  shadowColor="#8B1538"
+                />
+              </div>
             </Reveal>
           </div>
 
@@ -63,22 +68,23 @@ export const PrinciplesSpotlight: React.FC = () => {
                   key={item.title}
                   ref={(el) => (itemsRef.current[idx] = el)}
                   data-index={idx}
-                  className="transition-opacity duration-500 ease-out"
+                  className="transition-all duration-500 ease-out"
                   style={{
-                    opacity: isLit ? 1 : 0.28,
+                    opacity: isLit ? 1 : 0.3,
+                    transform: isLit ? 'translateX(0)' : 'translateX(-4px)',
                   }}
                 >
-                  <span className="block font-sans text-xs font-bold text-[#8B1538] tracking-widest uppercase mb-2">
+                  <span className="block font-sans text-xs font-bold text-[#FFC83D] tracking-widest uppercase mb-2">
                     0{idx + 1}
                   </span>
                   <h3
-                    className={`font-serif italic font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight leading-snug transition-colors duration-300 ${
-                      isLit ? 'text-[#8B1538]' : 'text-[#15120F]'
+                    className={`font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight leading-snug transition-colors duration-300 ${
+                      isLit ? 'text-[#FFC83D]' : 'text-[#FFF1D6]/80'
                     }`}
                   >
-                    "{item.title}"
+                    &ldquo;{item.title}&rdquo;
                   </h3>
-                  <p className="mt-4 font-sans text-xs sm:text-sm md:text-base text-[#6B6458] leading-relaxed max-w-lg">
+                  <p className="mt-4 font-sans text-xs sm:text-sm md:text-base text-[#FFF1D6]/85 leading-relaxed max-w-lg">
                     {item.description}
                   </p>
                 </div>
@@ -90,4 +96,5 @@ export const PrinciplesSpotlight: React.FC = () => {
     </section>
   );
 };
+
 

@@ -88,24 +88,26 @@ export const HeroScene: React.FC<HeroSceneProps> = ({ progress, isPastHero }) =>
         let aspect = Math.max(0.1, width / height);
         const camera = new THREE.PerspectiveCamera(42, aspect, 0.1, 100);
 
-        // 3. Lighting (ambient 0.5, directional 0.55 per spec)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        // 3. Lighting (Dusk lighting: ambient 0.75, directional 0.85 from (-6, 10, 9))
+        const ambientLight = new THREE.AmbientLight(0x9a7ab8, 0.75);
         scene.add(ambientLight);
 
-        const dirLight = new THREE.DirectionalLight(0xfffdfa, 0.55);
-        dirLight.position.set(5, 10, 7);
+        const dirLight = new THREE.DirectionalLight(0xffe0b0, 0.85);
+        dirLight.position.set(-6, 10, 9);
         scene.add(dirLight);
 
         // 4. Cards setup
         const N = isMobileWidth ? 16 : 22;
         const cardGeom = new THREE.BoxGeometry(0.72, 0.48, 0.05);
 
-        // 4 Shared Materials: burgundy, gold, graphite, taupe
-        const cardColors = [0x8b1538, 0xd4af37, 0x3a3438, 0xc9bda5];
+        // Shared Shiny Phong Materials: burgundy, gold, graphite, taupe, mint
+        const cardColors = [0x8b1538, 0xffc83d, 0x3a2f44, 0xc9bda5, 0x4fd1a1];
         const cardMaterials = cardColors.map(
           (color) =>
-            new THREE.MeshLambertMaterial({
+            new THREE.MeshPhongMaterial({
               color,
+              shininess: 70,
+              flatShading: true,
             })
         );
 
@@ -170,11 +172,12 @@ export const HeroScene: React.FC<HeroSceneProps> = ({ progress, isPastHero }) =>
         }
 
         const curve = new SineCurve();
-        const tubeGeom = new THREE.TubeGeometry(curve, 64, 0.03, 8, false);
+        const tubeGeom = new THREE.TubeGeometry(curve, 64, 0.035, 8, false);
         const tubeMat = new THREE.MeshBasicMaterial({
-          color: 0xd4af37,
+          color: 0xffc83d,
           transparent: true,
           opacity: 0,
+          blending: THREE.AdditiveBlending,
         });
         const tubeMesh = new THREE.Mesh(tubeGeom, tubeMat);
         scene.add(tubeMesh);

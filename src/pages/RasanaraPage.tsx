@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HERO_COPY, NAV_COPY } from '../content/rasanara';
 import { Hero } from '../components/rasanara/Hero';
@@ -8,19 +8,27 @@ import { ServicesIndex } from '../components/rasanara/ServicesIndex';
 import { PrinciplesSpotlight } from '../components/rasanara/PrinciplesSpotlight';
 import { RasaNarasi } from '../components/rasanara/RasaNarasi';
 import { ContactSection } from '../components/rasanara/ContactSection';
-import styles from '../styles/JourneyPage.module.css';
-import { DownloadCvButton } from '@/components/DownloadCvButton';
+import { TopBar } from '../components/rasanara/TopBar';
+import { DuskBackground, DecorLayer } from '../ui/kit';
 
-interface RasanaraPageProps {
-  cvUrl?: string;
-}
+export const RasanaraPage: React.FC = () => {
+  const [variant, setVariant] = useState<'festive' | 'calm'>('festive');
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // After hero (1.2 * vh), transition background to calm for reading comfort
+      const scrollY = window.scrollY;
+      const heroThreshold = window.innerHeight * 1.2;
+      setVariant(scrollY > heroThreshold ? 'calm' : 'festive');
+    };
 
-export const RasanaraPage: React.FC<RasanaraPageProps> = ({
-  cvUrl = '/cv.pdf'
-}) => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Update document title and meta description dynamically
-
   useEffect(() => {
     const originalTitle = document.title;
     document.title = 'Rasanara – Digital Partner';
@@ -61,16 +69,15 @@ export const RasanaraPage: React.FC<RasanaraPageProps> = ({
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FBFAF7] text-[#15120F] font-sans selection:bg-[#8B1538]/15 selection:text-[#8B1538] overflow-x-clip">
+    <DuskBackground variant={variant} className="overflow-x-clip selection:bg-[#E0316A]/30 selection:text-[#FFF1D6]">
       {/* Fixed Top Bar */}
-      {/* <TopBar /> */}
-      <DownloadCvButton cvUrl={cvUrl} />
-      <Link to="/" className={styles.backLink} aria-label="Kembali ke halaman utama teras">
-        ← Teras
-      </Link>
+      <TopBar />
+
+      {/* Floating Parallax SVG Decor Layer */}
+      <DecorLayer />
 
       {/* Main Content */}
-      <main id="main-content">
+      <main id="main-content" className="relative z-10">
         {/* 1. Hero Section (200svh scroll-driven 3D) */}
         <Hero />
 
@@ -94,33 +101,33 @@ export const RasanaraPage: React.FC<RasanaraPageProps> = ({
       </main>
 
       {/* Footer */}
-      <footer className="py-10 px-4 sm:px-6 md:px-8 border-t border-[#E4DED3] bg-[#FBFAF7] text-xs font-sans text-[#6B6458]">
+      <footer className="py-12 px-4 sm:px-6 md:px-8 border-t border-white/10 bg-[#160B2E]/90 text-xs font-sans text-[#FFF1D6]/70 relative z-10">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-serif italic font-bold text-[#15120F] text-sm">
+            <span className="font-serif italic font-bold text-[#FFF1D6] text-sm">
               {NAV_COPY.brand}
             </span>
-            <span className="w-1 h-1 rounded-full bg-[#D4AF37]" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FFC83D]" aria-hidden="true" />
             <span>Bogor, Jawa Barat · Indonesia</span>
           </div>
 
           <div className="flex items-center gap-5">
             <Link
               to="/"
-              className="hover:text-[#8B1538] transition-colors focus-visible:outline-2 focus-visible:outline-[#8B1538] rounded"
+              className="hover:text-[#FFC83D] transition-colors focus-visible:outline-2 focus-visible:outline-[#FFC83D] rounded"
             >
               {NAV_COPY.backToTerrace}
             </Link>
             <Link
               to="/profile"
-              className="hover:text-[#8B1538] transition-colors focus-visible:outline-2 focus-visible:outline-[#8B1538] rounded"
+              className="hover:text-[#FFC83D] transition-colors focus-visible:outline-2 focus-visible:outline-[#FFC83D] rounded"
             >
               {NAV_COPY.toCv}
             </Link>
           </div>
         </div>
       </footer>
-    </div>
+    </DuskBackground>
   );
 };
 

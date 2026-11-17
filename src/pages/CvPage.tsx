@@ -6,6 +6,7 @@ import { JOURNEY_INTRO, STOPS } from '../data/journey';
 import { DownloadCvButton } from '../components/DownloadCvButton';
 import { YearPills } from '../components/YearPills';
 import { InfoCard } from '../components/InfoCard';
+import { DuskBackground, SpinBadge, DecorLayer, SplitText } from '../ui/kit';
 import styles from '../styles/JourneyPage.module.css';
 import '../styles/tokens.css';
 
@@ -48,8 +49,12 @@ const CvPage: React.FC<CvPageProps> = ({
 
   return (
     <div className={styles.outer}>
+      {/* <DuskBackground variant="calm" /> */}
+      <DecorLayer />
+
       {/* Fixed download button */}
       <DownloadCvButton cvUrl={cvUrl} />
+
       {/* Back link */}
       <Link to="/" className={styles.backLink} aria-label="Kembali ke halaman utama teras">
         ← Teras
@@ -57,17 +62,26 @@ const CvPage: React.FC<CvPageProps> = ({
 
       {/* Intro section */}
       <section className={styles.intro} aria-labelledby="journey-h1">
-        <p className={styles.eyebrow}>{JOURNEY_INTRO.eyebrow}</p>
-        <h1 id="journey-h1" className={styles.h1}>
-          {JOURNEY_INTRO.h1}
-        </h1>
-        <p className={styles.lede}>{JOURNEY_INTRO.lede} {JOURNEY_INTRO.description}</p>
-        <div className={styles.chips} aria-label="Latar belakang singkat">
-          {JOURNEY_INTRO.chips.map((chip) => (
-            <span key={chip} className={styles.chip}>
-              {chip}
-            </span>
-          ))}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+          <div className="max-w-3xl">
+            <p className={styles.eyebrow}>{JOURNEY_INTRO.eyebrow}</p>
+            <h1 id="journey-h1" className={styles.h1}>
+              <SplitText text={JOURNEY_INTRO.h1} />
+            </h1>
+            <p className={styles.lede}>
+              {JOURNEY_INTRO.lede} {JOURNEY_INTRO.description}
+            </p>
+            <div className={styles.chips} aria-label="Latar belakang singkat">
+              {JOURNEY_INTRO.chips.map((chip) => (
+                <span key={chip} className={styles.chip}>
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:flex justify-end pt-4 pr-4 shrink-0">
+            <SpinBadge text="9+ TAHUN · 4 TAHAP KARIER · 1 MISI" size={130} />
+          </div>
         </div>
       </section>
 
@@ -107,7 +121,7 @@ const CvPage: React.FC<CvPageProps> = ({
           />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

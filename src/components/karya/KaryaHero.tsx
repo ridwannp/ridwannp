@@ -2,13 +2,12 @@ import React, { Suspense, lazy } from 'react';
 import { useKaryaContext } from '../../context/KaryaContext';
 import { KARYA_COPY, DISTRICTS, ProjectStatus } from '../../content/karya';
 import { CityFallbackSvg } from './CityFallbackSvg';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { SplitText, SpinBadge, Chip } from '../../ui/kit';
 
 const LazyCityScene = lazy(() => import('./CityScene'));
 
 export const KaryaHero: React.FC = () => {
   const { statusFilter, setStatusFilter, activeBuildingIndex } = useKaryaContext();
-  const prefersReducedMotion = useReducedMotion();
 
   const handleToggleStatus = (status: ProjectStatus) => {
     setStatusFilter(statusFilter === status ? null : status);
@@ -18,42 +17,22 @@ export const KaryaHero: React.FC = () => {
 
   return (
     <section
-      className="relative w-full h-[200svh] bg-[#FBFAF7]"
+      className="relative w-full h-[200svh] bg-transparent"
       aria-label="Panggung 3D Kota Karya"
     >
       {/* Sticky 100svh container */}
       <div className="sticky top-0 w-full h-[100svh] overflow-hidden select-none">
-        {/* Sky Background Gradient */}
+        {/* Dusk Sky Background Gradient (Festive) */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'linear-gradient(180deg, #78B7F1 0%, #B2D6F6 28%, #F1E7D3 47%, #EFE4D0 100%)',
+              'linear-gradient(180deg, #160B2E 0%, #3B0F39 36%, #8B1538 66%, #E9A23B 100%)',
           }}
         />
 
-        {/* Morning Warm Fog Glow on the Left */}
-        <div
-          className="absolute inset-y-0 left-0 w-1/2 pointer-events-none opacity-40 mix-blend-soft-light"
-          style={{
-            background: 'radial-gradient(ellipse at 10% 40%, rgba(255, 240, 210, 0.95), transparent 70%)',
-          }}
-        />
-
-        {/* 3 Slow CSS Clouds (Paused if reduced motion) */}
-        {!prefersReducedMotion && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
-            <div
-              className="absolute top-[12%] left-[-20%] w-[380px] h-[90px] rounded-full bg-white/40 blur-2xl animate-[cloudDrift_65s_linear_infinite]"
-            />
-            <div
-              className="absolute top-[22%] left-[-35%] w-[480px] h-[110px] rounded-full bg-white/35 blur-3xl animate-[cloudDrift_95s_linear_infinite_15s]"
-            />
-            <div
-              className="absolute top-[8%] left-[-15%] w-[320px] h-[75px] rounded-full bg-white/30 blur-2xl animate-[cloudDrift_80s_linear_infinite_35s]"
-            />
-          </div>
-        )}
+        {/* Twinkling Stars in Hero */}
+        <div className="kit-stars-layer" aria-hidden="true" />
 
         {/* 3D City Scene Canvas */}
         <div className="absolute inset-0 z-10">
@@ -64,76 +43,79 @@ export const KaryaHero: React.FC = () => {
 
         {/* Hero Copy & Status Legend Overlay (Top Left) */}
         <div
-          className="absolute top-[72px] sm:top-[88px] left-4 sm:left-10 z-20 max-w-xl pointer-events-none"
+          className="absolute top-[80px] sm:top-[96px] left-4 sm:left-10 z-20 max-w-xl pointer-events-none"
           style={{ paddingLeft: 'max(0px, env(safe-area-inset-left))' }}
         >
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-2.5">
-            <span className="font-sans font-bold text-xs tracking-[0.18em] text-[#8B1538]">
+          {/* Eyebrow & SpinBadge */}
+          <div className="flex items-center gap-4 mb-3">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1538] text-[#FFF1D6] border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24] text-xs font-sans font-bold tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#FFC83D]" aria-hidden="true" />
               {KARYA_COPY.eyebrow}
             </span>
-            <div className="w-16 sm:w-24 h-[1.5px] bg-[#D4AF37]" aria-hidden="true" />
+
+            <SpinBadge
+              text="DIBANGUN · SEDANG · KONSEP"
+              size={72}
+              textColor="#FFC83D"
+              centerColor="#4FD1A1"
+            />
           </div>
 
-          {/* H1 Heading */}
-          <h1 className="font-serif text-[2.2rem] sm:text-[3.2rem] lg:text-[3.8rem] font-normal leading-[1.08] text-[#1B1A2E] tracking-tight mb-3.5 drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)] text-balance">
-            {KARYA_COPY.h1}
-          </h1>
+          {/* H1 Heading with SplitText */}
+          <div className="mb-3.5">
+            <SplitText
+              text={KARYA_COPY.h1}
+              as="h1"
+              className="text-[2.2rem] sm:text-[3.2rem] lg:text-[3.6rem] leading-[1.08] text-[#FFF1D6]"
+              shadowColor="#E0316A"
+            />
+          </div>
 
           {/* Lede paragraph */}
-          <p className="font-sans text-xs sm:text-sm md:text-base text-[#4A453E] leading-relaxed max-w-lg mb-5 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+          <p className="font-sans text-xs sm:text-sm md:text-base text-[#FFF1D6]/90 leading-relaxed max-w-lg mb-6 drop-shadow-sm">
             {KARYA_COPY.lede}
           </p>
 
-          {/* Status Legend & Filter Pills */}
+          {/* Status Legend & Filter Chips */}
           <div
-            className="flex items-center gap-2.5 sm:gap-4 flex-wrap pointer-events-auto"
+            className="flex items-center gap-2.5 sm:gap-3 flex-wrap pointer-events-auto"
             aria-label="Filter status karya"
           >
             {/* Built Pill */}
-            <button
-              type="button"
+            <Chip
+              active={statusFilter === 'built'}
               onClick={() => handleToggleStatus('built')}
               aria-pressed={statusFilter === 'built'}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-sans font-medium transition-all duration-150 backdrop-blur-md border ${
-                statusFilter === 'built'
-                  ? 'bg-[#1B1A2E] text-white border-[#1B1A2E] shadow-sm'
-                  : 'bg-white/80 text-[#1B1A2E] border-[#E4DED3] hover:bg-white'
-              }`}
+              activeColor="#FFC83D"
+              inactiveColor="#FFF1D6"
             >
-              <div className="w-3 h-3 rounded-[2px] bg-[#D4AF37]" aria-hidden="true" />
+              <div className="w-3 h-3 rounded-[2px] bg-[#FFC83D] border border-[#1A0F24]" aria-hidden="true" />
               <span>{KARYA_COPY.legend.built}</span>
-            </button>
+            </Chip>
 
             {/* Building Pill */}
-            <button
-              type="button"
+            <Chip
+              active={statusFilter === 'building'}
               onClick={() => handleToggleStatus('building')}
               aria-pressed={statusFilter === 'building'}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-sans font-medium transition-all duration-150 backdrop-blur-md border ${
-                statusFilter === 'building'
-                  ? 'bg-[#1B1A2E] text-white border-[#1B1A2E] shadow-sm'
-                  : 'bg-white/80 text-[#1B1A2E] border-[#E4DED3] hover:bg-white'
-              }`}
+              activeColor="#FFC83D"
+              inactiveColor="#FFF1D6"
             >
-              <div className="w-3 h-3 rounded-[2px] border-[1.5px] border-[#1B1A2E] bg-white" aria-hidden="true" />
+              <div className="w-3 h-3 rounded-[2px] border-2 border-[#1A0F24] bg-white" aria-hidden="true" />
               <span>{KARYA_COPY.legend.building}</span>
-            </button>
+            </Chip>
 
             {/* Concept Pill */}
-            <button
-              type="button"
+            <Chip
+              active={statusFilter === 'concept'}
               onClick={() => handleToggleStatus('concept')}
               aria-pressed={statusFilter === 'concept'}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-sans font-medium transition-all duration-150 backdrop-blur-md border ${
-                statusFilter === 'concept'
-                  ? 'bg-[#1B1A2E] text-white border-[#1B1A2E] shadow-sm'
-                  : 'bg-white/80 text-[#1B1A2E] border-[#E4DED3] hover:bg-white'
-              }`}
+              activeColor="#4FD1A1"
+              inactiveColor="#FFF1D6"
             >
-              <div className="w-3 h-3 rounded-[2px] border-[1.5px] border-dashed border-[#5F5A66] bg-transparent" aria-hidden="true" />
+              <div className="w-3 h-3 rounded-[2px] border-2 border-dashed border-[#1A0F24] bg-transparent" aria-hidden="true" />
               <span>{KARYA_COPY.legend.concept}</span>
-            </button>
+            </Chip>
           </div>
         </div>
 
@@ -142,7 +124,7 @@ export const KaryaHero: React.FC = () => {
           className="absolute bottom-6 right-6 sm:right-10 z-20 pointer-events-none select-none"
           style={{ paddingRight: 'max(0px, env(safe-area-inset-right))' }}
         >
-          <div className="font-serif italic text-2xl sm:text-4xl text-white/85 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+          <div className="font-serif italic text-2xl sm:text-4xl text-[#FFF1D6]/85 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
             {activeDistrict.name}
           </div>
         </div>
@@ -150,4 +132,5 @@ export const KaryaHero: React.FC = () => {
     </section>
   );
 };
+
 

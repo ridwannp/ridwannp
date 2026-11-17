@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Dusk Design Kit Common CSS
+   ========================================================================== */
+
+/* Star Twinkle */
+@keyframes kitStarTwinkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.95; }
+  100% { opacity: 0.65; }
+}
+
+.kit-stars-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 12%, rgba(255, 241, 214, 0.95), transparent),
+    radial-gradient(1.5px 1.5px at 45% 8%, rgba(255, 200, 61, 0.9), transparent),
+    radial-gradient(2px 2px at 78% 15%, rgba(79, 209, 161, 0.95), transparent),
+    radial-gradient(1px 1px at 88% 28%, rgba(255, 241, 214, 0.8), transparent),
+    radial-gradient(2px 2px at 28% 32%, rgba(255, 241, 214, 0.85), transparent),
+    radial-gradient(1.5px 1.5px at 62% 22%, rgba(255, 200, 61, 0.9), transparent),
+    radial-gradient(1px 1px at 10% 48%, rgba(255, 241, 214, 0.75), transparent),
+    radial-gradient(1.5px 1.5px at 92% 42%, rgba(79, 209, 161, 0.85), transparent);
+  animation: kitStarTwinkle 5s ease-in-out infinite alternate;
+}
+
+/* Spin Badge */
+@keyframes kitBadgeRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.kit-badge-spin {
+  animation: kitBadgeRotate 18s linear infinite;
+}
+
+/* Bounce Letter */
+.kit-bounce-letter {
+  display: inline-block;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), color 200ms ease;
+}
+
+@media (hover: hover) {
+  .kit-bounce-letter:hover {
+    transform: translateY(-8px) scale(1.18) rotate(4deg);
+    color: #FFC83D !important;
+  }
+}
+
+/* Chunky Button Base */
+.kit-chunky-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  border: 3px solid #1A0F24;
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0 #1A0F24;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+}
+
+@media (hover: hover) {
+  .kit-chunky-btn:hover {
+    transform: translate(-3px, -3px) rotate(-1.5deg);
+    box-shadow: 7px 7px 0 #1A0F24;
+  }
+}
+
+.kit-chunky-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #1A0F24;
+}
+
+/* Booth Panel */
+.kit-booth-panel {
+  background-color: #FFF1D6;
+  border: 3px solid #1A0F24;
+  border-radius: 28px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Reduced Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+  .kit-stars-layer {
+    animation: none !important;
+  }
+  .kit-badge-spin {
+    animation: none !important;
+  }
+  .kit-bounce-letter:hover {
+    transform: none !important;
+  }
+  .kit-chunky-btn:hover {
+    transform: none !important;
+    box-shadow: 4px 4px 0 #1A0F24 !important;
+  }
+}
+
+/* Print CSS */
+@media print {
+  .kit-stars-layer,
+  .kit-badge-spin,
+  .kit-decor-layer {
+    display: none !important;
+  }
+}
+

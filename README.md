@@ -206,6 +206,45 @@ Sistem secara otomatis mendeteksi kapabilitas perangkat pengguna untuk memilih t
 
 ---
 
+## Dusk Design Kit Bersama (`src/ui/kit/` & `src/scene/common/`)
+
+Seluruh menu situs (**Perjalanan** `/cv`, **Rasanara** `/rasanara`, **Karya** `/karya`, dan **Digital Playground** `/playground`) telah diselaraskan menggunakan satu bahasa desain senja (*dusk theme*) yang konsisten tanpa mengubah konsep dasar, struktur konten, maupun data masing-masing halaman.
+
+### 1. Token Warna & Tipografi
+- **Warna Palet Senja (*Dusk Tokens*)**:
+  - Krem: `#FFF1D6` (Latar panel booth, teks kontras di atas gelap)
+  - Emas: `#FFC83D` (Aksen interaktif, badge, glow lampu, tombol primer)
+  - Koral: `#E0316A` (Sticker shadow judul, aksen visual ceria)
+  - Mint: `#4FD1A1` (Bintang dekorasi, status chip aktif, garis hantu)
+  - Tinta: `#1A0F24` (Garis border tebal 3px, bayangan balok offset, teks di atas panel krem)
+  - Burgundy: `#8B1538` (Identitas Rasanara, lampu pintu beranda, tombol gelap)
+  - Plum Gelap: `#2B1026` / `#160B2E` (Gradien langit senja latar belakang)
+- **Tipografi Terstandar**:
+  - **Judul / Heading**: `Bricolage Grotesque` (800) dengan sticker shadow koral 3–4px.
+  - **Isi / Body**: `Space Grotesk` (500/700) untuk keterbacaan teknis modern.
+  - **Reflektif / Filosofis**: `Instrument Serif` (Italic) hanya dipertahankan untuk kutipan evolusi karier, penutup filosofis, dan kata *Rasa*.
+
+### 2. Komponen UI Kit (`src/ui/kit/`)
+- `DuskBackground`: Komponen latar belakang gradien senja dengan lapisan bintang berkelip procedural (`kit-stars-layer`).
+  - **Variant `festive`**: `#160B2E` → `#E9A23B` untuk bagian hero dengan panggung 3D semarak.
+  - **Variant `calm`**: `#160B2E` → `#4A1236` untuk bagian fokus membaca dan indeks teks panjang.
+- `Booth`: Panel kartu krem terinspirasi stan karnaval (`#FFF1D6`, border 3px tinta `#1A0F24`, radius 28px, bayangan offset 9px warna aksen dinamis).
+- `Button`: Tombol pill tebal chunky (`kit-chunky-btn`) dengan varian warna (gold, mint, coral, cream, burgundy, dark) dan efek pegas interaktif.
+- `Chip` & `Tag`: Label pill filter interaktif dengan state `aria-pressed` dan styling tebal.
+- `SplitText`: Efek animasi muncul huruf per huruf dengan jeda 45ms dan hover pegas interaktif.
+- `SpinBadge`: Lencana SVG bundar dengan teks melingkar (*text-on-path*) yang berputar lambat 18s.
+- `DecorLayer`: Lapisan ornamen vektor senja (bintang mint/emas, cincin emas, squiggle koral) dengan efek parallax halus.
+- `TopBar`: Navigasi atas senja dengan tombol chunky `← Teras`, jump pills, dan slot tombol CTA.
+
+### 3. Scene Common 3D (`src/scene/common/`)
+- `dusk.ts`: Helper pencahayaan senja Three.js (`setupDuskLights`), material Phong dengan shininess lembut, lingkaran genangan cahaya (`createLightPool`), bulan sabit senja, siluet bukit, dan partikel konfeti.
+- `useSceneGuards.ts`: Pengaman canvas 3D terhadap tab tersembunyi (`document.hidden`), elemen di luar viewport (`IntersectionObserver`), nilai dimensi `0` atau `NaN`, serta auto-downgrade performa jika frame time melebihi 33ms.
+
+### 4. Halaman Katalog Komponen (`/dev/kit`)
+Situs dilengkapi halaman preview interaktif di rute `/dev/kit` untuk memverifikasi seluruh komponen kit desain bersama, kontras warna WCAG AA, dan perilaku responsif.
+
+---
+
 ## Fitur & Aksesibilitas
 
 - **Aksesibilitas Universal**: Kontras warna telah diuji memenuhi standar WCAG AA (rasio kontras minimal 4.5:1). Seluruh kontrol dapat diakses menggunakan keyboard dengan *focus ring* yang jelas. Elemen 3D Canvas diberi `aria-hidden="true"`, sedangkan navigasi tab menggunakan pola ARIA Tabs dengan navigasi tombol panah keyboard.

@@ -55,24 +55,24 @@ export function createRealCityScene(
   canvas.style.display = 'block';
   host.appendChild(canvas);
 
-  // 2. Scene & Fog
+  // 2. Scene & Fog (Dusk Theme)
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0xdceaff, 24, 90);
+  scene.fog = new THREE.Fog(0x4a1236, 24, 90);
 
   // 3. Camera
   const initialWidth = Math.max(1, host.clientWidth);
   const initialHeight = Math.max(1, host.clientHeight);
   const camera = new THREE.PerspectiveCamera(26, initialWidth / initialHeight, 0.1, 300);
 
-  // 4. Lights
-  const hemiLight = new THREE.HemisphereLight(0xbfd9f5, 0xe8dcc6, isHighTier ? 0.85 : 0.95);
+  // 4. Dusk Lights
+  const hemiLight = new THREE.HemisphereLight(0x9a7ab8, 0x2b1026, isHighTier ? 0.75 : 0.85);
   scene.add(hemiLight);
 
-  const sunLight = new THREE.DirectionalLight(0xffe6bf, isHighTier ? 1.0 : 0.85);
+  const sunLight = new THREE.DirectionalLight(0xffe0b0, isHighTier ? 0.9 : 0.8);
   sunLight.position.set(-14, 22, 16);
   scene.add(sunLight);
 
-  const fillLight = new THREE.DirectionalLight(0xa5c4e8, 0.35);
+  const fillLight = new THREE.DirectionalLight(0x8b1538, 0.45);
   fillLight.position.set(18, 14, -12);
   scene.add(fillLight);
 
@@ -114,13 +114,13 @@ export function createRealCityScene(
     }
   }
 
-  // 6. Ground & Plaza Grid
+  // 6. Ground & Plaza Grid (Plum Ground)
   const groundGeom = track(new THREE.PlaneGeometry(500, 200));
   const groundMat = track(
     new THREE.MeshLambertMaterial({
-      color: 0xf8f6f0,
+      color: 0x2b1026,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.98,
     })
   );
   const groundMesh = new THREE.Mesh(groundGeom, groundMat);
@@ -128,11 +128,28 @@ export function createRealCityScene(
   groundMesh.position.set(50, -0.01, 0);
   scene.add(groundMesh);
 
-  // Grid Lines
-  const gridHelper = new THREE.GridHelper(500, 160, 0xd4cbbb, 0xeae5d9);
+  // Grid Lines (Warm dusk lines)
+  const gridHelper = new THREE.GridHelper(500, 160, 0x4a1236, 0x3d1430);
   gridHelper.position.set(50, 0.01, 0);
   disposables.push(gridHelper.geometry, gridHelper.material as THREE.Material);
   scene.add(gridHelper);
+
+  // Dusk Moon & Silhouette Hills
+  const moonMat = track(new THREE.MeshBasicMaterial({ color: 0xfff1d6, fog: false }));
+  const moonGeom = track(new THREE.SphereGeometry(2.4, 16, 16));
+  const moonMesh = new THREE.Mesh(moonGeom, moonMat);
+  moonMesh.position.set(-18, 22, -45);
+  scene.add(moonMesh);
+
+  // Silhouette Hills
+  const hillMat1 = track(new THREE.MeshBasicMaterial({ color: 0x1f0b24, fog: false }));
+  const hillMat2 = track(new THREE.MeshBasicMaterial({ color: 0x260d2b, fog: false }));
+  for (let h = 0; h < 6; h++) {
+    const coneGeom = track(new THREE.ConeGeometry(24 + (h % 3) * 6, 10 + (h % 2) * 4, 8));
+    const hill = new THREE.Mesh(coneGeom, h % 2 === 0 ? hillMat1 : hillMat2);
+    hill.position.set(-20 + h * 22, 1, -48 - (h % 3) * 3);
+    scene.add(hill);
+  }
 
   // Soft Contact Shadow Texture (baked procedurally)
   const shadowCanvas = document.createElement('canvas');
@@ -172,45 +189,46 @@ export function createRealCityScene(
   }
 
   // 8. Shared Materials
-  const darkRoofMat = track(new THREE.MeshLambertMaterial({ color: 0x2e2c33 }));
-  const darkSteelMat = track(new THREE.MeshLambertMaterial({ color: 0x242228 }));
-  const concreteMat = track(new THREE.MeshLambertMaterial({ color: 0xd4cdc0 }));
-  const scaffoldPoleMat = track(new THREE.MeshLambertMaterial({ color: 0x6e685f }));
+  const darkRoofMat = track(new THREE.MeshLambertMaterial({ color: 0x1f1924 }));
+  const darkSteelMat = track(new THREE.MeshLambertMaterial({ color: 0x18141d }));
+  const concreteMat = track(new THREE.MeshLambertMaterial({ color: 0x8a7f8d }));
+  const scaffoldPoleMat = track(new THREE.MeshLambertMaterial({ color: 0x5a505e }));
   const craneBurgundyMat = track(new THREE.MeshLambertMaterial({ color: 0x8b1538 }));
-  const craneGoldMat = track(new THREE.MeshLambertMaterial({ color: 0xd4af37 }));
+  const craneGoldMat = track(new THREE.MeshLambertMaterial({ color: 0xffc83d }));
   const burgundySlatMat = track(new THREE.MeshLambertMaterial({ color: 0x8b1538 }));
-  const goldSlatMat = track(new THREE.MeshLambertMaterial({ color: 0xd4af37 }));
-  const woodPanelMat = track(new THREE.MeshLambertMaterial({ color: 0xb5824c }));
+  const goldSlatMat = track(new THREE.MeshLambertMaterial({ color: 0xffc83d }));
+  const woodPanelMat = track(new THREE.MeshLambertMaterial({ color: 0x855430 }));
   const wireMat = track(
-    new THREE.LineBasicMaterial({ color: 0x1b1a2e, opacity: 0.45, transparent: true })
+    new THREE.LineBasicMaterial({ color: 0x4a1236, opacity: 0.55, transparent: true })
   );
+  // Concept wire glowing mint thin
   const ghostLineMat = track(
-    new THREE.LineBasicMaterial({ color: 0x8b1538, opacity: 0.18, transparent: true })
+    new THREE.LineBasicMaterial({ color: 0x4fd1a1, opacity: 0.5, transparent: true })
   );
 
-  // Window Materials
+  // Strongly emissive glowing windows
   const windowLitMat = track(
     new THREE.MeshBasicMaterial({
-      color: 0xffd060,
+      color: 0xffc83d,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.98,
     })
   );
   const windowReflectMat = isHighTier
     ? track(
         new THREE.MeshStandardMaterial({
-          color: 0xa8c4db,
+          color: 0x3d2847,
           metalness: 0.65,
-          roughness: 0.15,
-          envMapIntensity: 1.2,
+          roughness: 0.25,
+          envMapIntensity: 0.8,
         })
       )
-    : track(new THREE.MeshLambertMaterial({ color: 0x98b8d0 }));
+    : track(new THREE.MeshLambertMaterial({ color: 0x3d2847 }));
 
-  // Foliage & Tree Materials
-  const treeTrunkMat = track(new THREE.MeshLambertMaterial({ color: 0x5a412c }));
-  const treeLeafMat = track(new THREE.MeshLambertMaterial({ color: 0x529457 }));
-  const treeLeafDarkMat = track(new THREE.MeshLambertMaterial({ color: 0x3f7a44 }));
+  // Foliage & Tree Materials (Dark green warmly illuminated)
+  const treeTrunkMat = track(new THREE.MeshLambertMaterial({ color: 0x3a251a }));
+  const treeLeafMat = track(new THREE.MeshLambertMaterial({ color: 0x234d28 }));
+  const treeLeafDarkMat = track(new THREE.MeshLambertMaterial({ color: 0x1b3b1f }));
 
   // Tree template geometries
   const trunkGeom = track(new THREE.CylinderGeometry(0.07, 0.11, 1.1, 7));
@@ -241,6 +259,8 @@ export function createRealCityScene(
     baseY: number;
     targetY: number;
     currentY: number;
+    springVelocity: number;
+    springY: number;
     project: Project;
     materials: THREE.Material[];
     swayingHook?: THREE.Group;
@@ -473,6 +493,8 @@ export function createRealCityScene(
       baseY: 0,
       targetY: 0,
       currentY: -height, // Initial stagger growth
+      springVelocity: 0,
+      springY: 0,
       project: proj,
       materials: bldMaterials,
       swayingHook: craneHookGroup,
@@ -543,6 +565,46 @@ export function createRealCityScene(
     }
   }
 
+  // Confetti Particle Burst for Click
+  const confettiCount = 35;
+  const confettiGeo = track(new THREE.PlaneGeometry(0.12, 0.2));
+  const confettiMat = track(
+    new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0.9 })
+  );
+  const confettiMesh = track(new THREE.InstancedMesh(confettiGeo, confettiMat, confettiCount));
+  confettiMesh.visible = false;
+  scene.add(confettiMesh);
+
+  interface ConfettiParticle {
+    x: number; y: number; z: number;
+    vx: number; vy: number; vz: number;
+    rotX: number; rotY: number;
+  }
+  const confettiParticles: ConfettiParticle[] = [];
+  const confettiDummy = new THREE.Object3D();
+  let confettiLife = 0;
+
+  function triggerConfettiBurst(x: number, y: number, z: number) {
+    if (prefersReducedMotion) return;
+    confettiParticles.length = 0;
+    const colors = [0xffc83d, 0x4fd1a1, 0xe0316a, 0xfff1d6];
+
+    for (let i = 0; i < confettiCount; i++) {
+      confettiParticles.push({
+        x, y: y + 1.2, z,
+        vx: (Math.random() - 0.5) * 4.5,
+        vy: 2.5 + Math.random() * 3.5,
+        vz: (Math.random() - 0.5) * 3.5,
+        rotX: Math.random() * Math.PI,
+        rotY: Math.random() * Math.PI,
+      });
+      confettiMesh.setColorAt(i, new THREE.Color(colors[i % colors.length]));
+    }
+    if (confettiMesh.instanceColor) confettiMesh.instanceColor.needsUpdate = true;
+    confettiLife = 1.0;
+    confettiMesh.visible = true;
+  }
+
   function onClick(e: MouseEvent) {
     const rect = canvas.getBoundingClientRect();
     if (rect.width <= 0 || rect.height <= 0) return;
@@ -557,6 +619,10 @@ export function createRealCityScene(
       const hit = intersects[0].object;
       const slug = (hit.userData as { slug?: string }).slug;
       if (slug) {
+        const bld = buildings.find((b) => b.slug === slug);
+        if (bld) {
+          triggerConfettiBurst(bld.group.position.x, bld.group.position.y + 2, bld.group.position.z);
+        }
         callbacks.onClick?.(slug);
       }
     }
@@ -619,10 +685,22 @@ export function createRealCityScene(
           }
         }
 
-        // Hover elevation
+        // Hover elevation with Spring Physics (melompat pegas kecil)
         const isHovered = bld.slug === activeHoveredSlug;
-        bld.targetY = isHovered ? 0.18 : 0;
-        bld.group.position.y = bld.currentY;
+        bld.targetY = isHovered ? 0.28 : 0;
+
+        if (prefersReducedMotion) {
+          bld.springY = bld.targetY;
+        } else {
+          // Spring formula: F = -k * x - c * v
+          const k = 160; // stiffness
+          const c = 14;  // damping
+          const force = -k * (bld.springY - bld.targetY) - c * bld.springVelocity;
+          bld.springVelocity += force * dt;
+          bld.springY += bld.springVelocity * dt;
+        }
+
+        bld.group.position.y = bld.currentY + bld.springY;
 
         // Dimming if filtered out
         const isFilteredOut =
@@ -661,6 +739,31 @@ export function createRealCityScene(
         // Narrow (<=900px): text on top, city below, camera backs up
         camera.position.set(currentCameraX + 5.0, 8.0, 26.0);
         camera.lookAt(currentCameraX, 3.8, -1.0);
+      }
+
+      // Update Click Confetti Burst
+      if (confettiLife > 0) {
+        confettiLife -= dt * 1.2;
+        if (confettiLife <= 0) {
+          confettiMesh.visible = false;
+        } else {
+          for (let i = 0; i < confettiParticles.length; i++) {
+            const p = confettiParticles[i];
+            p.vy -= 9.8 * dt; // gravity
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            p.z += p.vz * dt;
+            p.rotX += dt * 5;
+            p.rotY += dt * 4;
+
+            confettiDummy.position.set(p.x, p.y, p.z);
+            confettiDummy.rotation.set(p.rotX, p.rotY, 0);
+            confettiDummy.scale.setScalar(Math.max(0.01, confettiLife));
+            confettiDummy.updateMatrix();
+            confettiMesh.setMatrixAt(i, confettiDummy.matrix);
+          }
+          confettiMesh.instanceMatrix.needsUpdate = true;
+        }
       }
 
       renderer.render(scene, camera);

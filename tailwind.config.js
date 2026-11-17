@@ -9,8 +9,19 @@ export default {
       fontFamily: {
         serif: ['"Instrument Serif"', 'Georgia', 'serif'],
         sans: ['"Space Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'system-ui', '-apple-system', 'sans-serif'],
+        bricolage: ['"Bricolage Grotesque"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
+        dusk: {
+          cream: '#FFF1D6',
+          gold: '#FFC83D',
+          coral: '#E0316A',
+          mint: '#4FD1A1',
+          ink: '#1A0F24',
+          burgundy: '#8B1538',
+          plum: '#2B1026',
+        },
         terrace: {
           bg: '#FBFAF7',
           cord: '#1A1720',

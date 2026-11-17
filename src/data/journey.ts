@@ -34,7 +34,6 @@ export const JOURNEY_INTRO: JourneyIntroData = {
   chips: [
     'Enterprise Architecture',
     'Product Management',
-    'Technical Experience',
     'Software Development',
     'AI & Business Automation',
   ],

@@ -25,8 +25,8 @@ export function createJourneyScene(
   const prefersReducedMotion = Boolean(options?.prefersReducedMotion);
 
   // 1. Renderer
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-  renderer.setClearColor(0xfbfaf7, 1);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
   const canvas = renderer.domElement;
@@ -37,15 +37,20 @@ export function createJourneyScene(
 
   // 2. Scene & Camera
   const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x4a1236, 0.008);
   const camera = new THREE.PerspectiveCamera(40, host.clientWidth / host.clientHeight, 0.1, 300);
 
-  // 3. Lights
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xcfc5ad, 0.7);
+  // 3. Lights (Dusk atmosphere)
+  const hemiLight = new THREE.HemisphereLight(0x9a7ab8, 0x2b1026, 0.65);
   scene.add(hemiLight);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  const dirLight = new THREE.DirectionalLight(0xffe0b0, 0.85);
   dirLight.position.set(-6, 12, 9);
   scene.add(dirLight);
+
+  const fillLight = new THREE.DirectionalLight(0x8b1538, 0.35);
+  fillLight.position.set(6, -8, -6);
+  scene.add(fillLight);
 
   // Disposables tracking
   const disposables: { dispose: () => void }[] = [];
@@ -65,16 +70,16 @@ export function createJourneyScene(
     return geomCache[width];
   }
 
-  const stairMaterial = track(new THREE.MeshLambertMaterial({ color: 0xc9bc9f }));
+  const stairMaterial = track(new THREE.MeshLambertMaterial({ color: 0x351d38 }));
   const edgeLineMaterial = track(
-    new THREE.LineBasicMaterial({ color: 0x8a7f68, opacity: 0.5, transparent: true })
+    new THREE.LineBasicMaterial({ color: 0x6e386a, opacity: 0.6, transparent: true })
   );
 
   const floorMaterials: THREE.MeshLambertMaterial[] = [];
   for (let k = 0; k < 5; k++) {
     const mat = track(
       new THREE.MeshLambertMaterial({
-        color: 0xd8cfb7,
+        color: 0x3a213e,
         emissive: new THREE.Color(0x000000),
       })
     );
@@ -114,8 +119,8 @@ export function createJourneyScene(
   const ctx = coneCanvas.getContext('2d');
   if (ctx) {
     const grad = ctx.createLinearGradient(0, 0, 0, 128);
-    grad.addColorStop(0, 'rgba(255, 214, 120, 0.8)');
-    grad.addColorStop(1, 'rgba(255, 214, 120, 0.0)');
+    grad.addColorStop(0, 'rgba(255, 200, 61, 0.85)');
+    grad.addColorStop(1, 'rgba(255, 200, 61, 0.0)');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 4, 128);
   }
@@ -126,10 +131,10 @@ export function createJourneyScene(
 
   const domeGeom = track(new THREE.SphereGeometry(R, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2));
   const domeMat = track(
-    new THREE.MeshLambertMaterial({ color: 0xb7ad9a, side: THREE.DoubleSide })
+    new THREE.MeshLambertMaterial({ color: 0x241128, side: THREE.DoubleSide })
   );
   const rimGeom = track(new THREE.CylinderGeometry(R + 0.03, R + 0.03, 0.08, 32));
-  const rimMat = track(new THREE.MeshLambertMaterial({ color: 0x17151a }));
+  const rimMat = track(new THREE.MeshLambertMaterial({ color: 0x140a18 }));
   const cableGeom = track(new THREE.CylinderGeometry(0.025, 0.025, 60, 8));
   const bulbGeom = track(new THREE.CircleGeometry(R * 0.62, 24));
   const coneGeom = track(new THREE.CylinderGeometry(0.18, 2.5, BASE - 0.05, 36, 1, true));
@@ -157,7 +162,7 @@ export function createJourneyScene(
 
     // Bulb
     const bulbMat = track(
-      new THREE.MeshBasicMaterial({ color: 0xfff3c8, transparent: true, opacity: 1 })
+      new THREE.MeshBasicMaterial({ color: 0xffc83d, transparent: true, opacity: 1 })
     );
     const bulb = new THREE.Mesh(bulbGeom, bulbMat);
     bulb.rotation.x = Math.PI / 2;
@@ -182,7 +187,7 @@ export function createJourneyScene(
     // Floor light circle (placed directly on scene)
     const circleMat = track(
       new THREE.MeshBasicMaterial({
-        color: 0xffe4a0,
+        color: 0xffc83d,
         transparent: true,
         depthWrite: false,
         opacity: 0,
@@ -204,7 +209,7 @@ export function createJourneyScene(
   // 6. Stop 4: Final Landing, Wall, Door & Light Spill
   // Back wall: Box 12 x 4.8 x 0.3 at z = -3.2, bottom touches floor (LT[4] = 20.0)
   const wallBox = track(new THREE.BoxGeometry(12, 4.8, 0.3));
-  const wallMat = track(new THREE.MeshLambertMaterial({ color: 0xd2c7ad }));
+  const wallMat = track(new THREE.MeshLambertMaterial({ color: 0x2e142c }));
   const wallMesh = new THREE.Mesh(wallBox, wallMat);
   wallMesh.position.set(66.0, 20.0 + 4.8 / 2, -3.2);
   scene.add(wallMesh);
@@ -214,8 +219,8 @@ export function createJourneyScene(
   wallLine.position.copy(wallMesh.position);
   scene.add(wallLine);
 
-  // Door Frame: 4 boxes around 1.7 x 3.3 opening, thickness 0.15, depth 0.35, color 0x4a4234
-  const frameMat = track(new THREE.MeshLambertMaterial({ color: 0x4a4234 }));
+  // Door Frame: 4 boxes around 1.7 x 3.3 opening, thickness 0.15, depth 0.35
+  const frameMat = track(new THREE.MeshLambertMaterial({ color: 0x170a1a }));
   const frameGroup = new THREE.Group();
 
   const leftPostGeom = track(new THREE.BoxGeometry(0.15, 3.3, 0.35));
@@ -234,12 +239,12 @@ export function createJourneyScene(
 
   scene.add(frameGroup);
 
-  // Door leaf: Box 1.7 x 3.3 x 0.12 color 0xe9e1cf, pivot at left hinge (x = 61.65, z = -3.05)
+  // Door leaf: Box 1.7 x 3.3 x 0.12 color 0xfff1d6 (dusk cream), pivot at left hinge (x = 61.65, z = -3.05)
   const doorPivot = new THREE.Group();
   doorPivot.position.set(61.65, 20.0, -3.05);
 
   const doorLeafGeom = track(new THREE.BoxGeometry(1.7, 3.3, 0.12));
-  const doorLeafMat = track(new THREE.MeshLambertMaterial({ color: 0xe9e1cf }));
+  const doorLeafMat = track(new THREE.MeshLambertMaterial({ color: 0xfff1d6 }));
   const doorLeafMesh = new THREE.Mesh(doorLeafGeom, doorLeafMat);
   doorLeafMesh.position.set(1.7 / 2, 3.3 / 2, 0);
   doorPivot.add(doorLeafMesh);
@@ -249,19 +254,19 @@ export function createJourneyScene(
   doorLine.position.copy(doorLeafMesh.position);
   doorPivot.add(doorLine);
 
-  // Doorknob: sphere r = 0.07 color 0xd9a441
+  // Doorknob: sphere r = 0.07 color 0xffc83d (gold)
   const knobGeom = track(new THREE.SphereGeometry(0.07, 16, 16));
-  const knobMat = track(new THREE.MeshLambertMaterial({ color: 0xd9a441 }));
+  const knobMat = track(new THREE.MeshLambertMaterial({ color: 0xffc83d }));
   const knobMesh = new THREE.Mesh(knobGeom, knobMat);
   knobMesh.position.set(1.7 - 0.18, 1.5, 0.09);
   doorPivot.add(knobMesh);
 
   scene.add(doorPivot);
 
-  // Warm light plane behind door: 0xffe2a0, MeshBasic
+  // Warm light plane behind door: 0xffc83d, MeshBasic
   const doorBackLightGeom = track(new THREE.PlaneGeometry(1.7, 3.3));
   const doorBackLightMat = track(
-    new THREE.MeshBasicMaterial({ color: 0xffe2a0, transparent: true, opacity: 0 })
+    new THREE.MeshBasicMaterial({ color: 0xffc83d, transparent: true, opacity: 0 })
   );
   const doorBackLight = new THREE.Mesh(doorBackLightGeom, doorBackLightMat);
   doorBackLight.position.set(62.5, 20.0 + 3.3 / 2, -3.25);
@@ -274,9 +279,9 @@ export function createJourneyScene(
   const sCtx = spillCanvas.getContext('2d');
   if (sCtx) {
     const sGrad = sCtx.createLinearGradient(0, 0, 0, 128);
-    sGrad.addColorStop(0, 'rgba(255, 226, 160, 1.0)');
-    sGrad.addColorStop(0.5, 'rgba(255, 226, 160, 0.6)');
-    sGrad.addColorStop(1, 'rgba(255, 226, 160, 0.0)');
+    sGrad.addColorStop(0, 'rgba(255, 200, 61, 1.0)');
+    sGrad.addColorStop(0.5, 'rgba(255, 200, 61, 0.6)');
+    sGrad.addColorStop(1, 'rgba(255, 200, 61, 0.0)');
     sCtx.fillStyle = sGrad;
     sCtx.fillRect(0, 0, 64, 128);
   }
@@ -329,19 +334,19 @@ export function createJourneyScene(
 
   // Materials for styles
   const lowPolyMaterials = {
-    pants: track(new THREE.MeshLambertMaterial({ color: 0x2e2d38 })),
-    torso: track(new THREE.MeshLambertMaterial({ color: 0xcfc6ae })),
+    pants: track(new THREE.MeshLambertMaterial({ color: 0x1a0f24 })),
+    torso: track(new THREE.MeshLambertMaterial({ color: 0xfff1d6 })),
     skin: track(new THREE.MeshLambertMaterial({ color: 0xe2bf9c })),
-    hair: track(new THREE.MeshLambertMaterial({ color: 0x17171d })),
-    backpack: track(new THREE.MeshLambertMaterial({ color: 0x2b2b32 })),
+    hair: track(new THREE.MeshLambertMaterial({ color: 0x1a0f24 })),
+    backpack: track(new THREE.MeshLambertMaterial({ color: 0x8b1538 })),
   };
 
   const mannequinMaterials = {
     all: track(new THREE.MeshLambertMaterial({ color: 0xe6dfd0 })),
-    head: track(new THREE.MeshLambertMaterial({ color: 0xf1ecdf })),
+    head: track(new THREE.MeshLambertMaterial({ color: 0xfff1d6 })),
   };
 
-  const silhouetteMaterial = track(new THREE.MeshBasicMaterial({ color: 0x1b1915 }));
+  const silhouetteMaterial = track(new THREE.MeshBasicMaterial({ color: 0xfff1d6 }));
 
   // Geometry definitions for character
   const legBox = track(new THREE.BoxGeometry(0.22, 0.88, 0.24));
@@ -485,7 +490,7 @@ export function createJourneyScene(
   function handleResize() {
     const w = host.clientWidth;
     const h = host.clientHeight;
-    if (w === 0 || h === 0) return;
+    if (!w || !h || isNaN(w) || isNaN(h) || w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
@@ -494,6 +499,8 @@ export function createJourneyScene(
 
   // Update function per frame
   function update(pos: number, dpos: number, doorFraction?: number) {
+    if (isNaN(pos) || !isFinite(pos)) pos = 0;
+    if (isNaN(dpos) || !isFinite(dpos)) dpos = 0;
     const N = 5;
     // 1. Calculate figure position on path
     const k0 = Math.min(N - 2, Math.floor(pos));
@@ -571,16 +578,20 @@ export function createJourneyScene(
     for (let k = 0; k < 4; k++) {
       const lamp = lamps[k];
       const dist = Math.abs(charX - PATH.CX[k]);
-      const a = 1 - smoothstep((dist - 1.2) / 2.4);
+      const rawA = 1 - smoothstep((dist - 1.2) / 2.4);
+      // Previous phase lamps stay gently illuminated
+      const isPast = charX > PATH.CX[k] + 1.2;
+      const minA = isPast ? 0.15 : 0.0;
+      const a = Math.max(minA, rawA);
 
       if (a > maxLit) maxLit = a;
 
       lamp.group.visible = a > 0.004;
-      lamp.group.position.y = PATH.LT[k] + (1 - a) * 12;
+      lamp.group.position.y = PATH.LT[k] + (1 - Math.min(1, rawA)) * 10;
       lamp.bulbMat.opacity = a;
       lamp.coneMat.opacity = a * a;
       lamp.circleMat.opacity = 0.55 * a;
-      floorMaterials[k].emissive.setRGB(0.3 * a, 0.25 * a, 0.14 * a);
+      floorMaterials[k].emissive.setRGB(0.35 * a, 0.28 * a, 0.12 * a);
     }
 
     // 5. Camera positioning & follow

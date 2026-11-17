@@ -1,11 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KaryaProvider } from '../context/KaryaContext';
 import { TopBar } from '../components/karya/TopBar';
 import { KaryaHero } from '../components/karya/KaryaHero';
 import { ProjectIndex } from '../components/karya/ProjectIndex';
 import { PROJECTS } from '../content/karya';
+import { DuskBackground, DecorLayer } from '../ui/kit';
 
 export const KaryaPage: React.FC = () => {
+  const [variant, setVariant] = useState<'festive' | 'calm'>('festive');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Transition from festive (3D hero) to calm (typographic index)
+      const scrollY = window.scrollY;
+      const heroThreshold = window.innerHeight * 1.2;
+      setVariant(scrollY > heroThreshold ? 'calm' : 'festive');
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Update Document Title and SEO Metadata
   useEffect(() => {
     const originalTitle = document.title;
@@ -55,9 +72,12 @@ export const KaryaPage: React.FC = () => {
 
   return (
     <KaryaProvider>
-      <div className="min-h-screen bg-[#FBFAF7] text-[#1B1A2E] font-sans antialiased selection:bg-[#FFE7B0] selection:text-[#1B1A2E] overflow-x-clip">
+      <DuskBackground variant={variant} className="overflow-x-clip selection:bg-[#FFC83D]/30 selection:text-[#FFF1D6]">
         {/* Fixed Top Bar */}
         <TopBar />
+
+        {/* Floating Parallax SVG Decor Layer */}
+        <DecorLayer />
 
         {/* 1. Hero Section (200svh scroll-driven 3D City Scene) */}
         <KaryaHero />
@@ -66,10 +86,10 @@ export const KaryaPage: React.FC = () => {
         <ProjectIndex />
 
         {/* 3. Footer */}
-        <footer className="py-10 px-4 sm:px-8 border-t border-[#E4DED3] bg-[#FBFAF7] text-xs font-sans text-[#5F5A66] text-center">
-          <p>© Ridwan Nurdiyanto Putra</p>
+        <footer className="py-12 px-4 sm:px-8 border-t border-white/10 bg-[#160B2E]/90 text-xs font-sans text-[#FFF1D6]/70 text-center relative z-20">
+          <p>© {new Date().getFullYear()} Ridwan Nurdiyanto Putra. Semua karya dibangun dengan pertimbangan rekayasa yang cermat.</p>
         </footer>
-      </div>
+      </DuskBackground>
     </KaryaProvider>
   );
 };

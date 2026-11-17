@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { PROJECTS, KARYA_COPY } from '../content/karya';
 import { TopBar } from '../components/karya/TopBar';
+import { DuskBackground, DecorLayer, Booth, Button, SplitText } from '../ui/kit';
 
 export const CaseStudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -32,62 +33,70 @@ export const CaseStudyPage: React.FC = () => {
   const cs = project.caseStudy;
 
   return (
-    <div className="min-h-screen bg-[#FBFAF7] text-[#1B1A2E] font-sans antialiased selection:bg-[#FFE7B0]">
+    <DuskBackground variant="calm" className="selection:bg-[#FFC83D]/30 selection:text-[#FFF1D6]">
       {/* Top Bar with Back and Download CV */}
       <TopBar />
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-8 pt-24 sm:pt-32 pb-24">
-        {/* Back navigation */}
+      {/* Floating Parallax Decor Layer */}
+      <DecorLayer />
+
+      <main className="max-w-4xl mx-auto px-4 sm:px-8 pt-24 sm:pt-32 pb-24 relative z-10">
+        {/* Back navigation button */}
         <div className="mb-8">
           <Link
             to="/karya"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans font-medium text-[#5F5A66] hover:text-[#1B1A2E] transition-colors"
+            className="kit-chunky-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-full bg-[#FFF1D6] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24]"
           >
-            {KARYA_COPY.backToCity}
+            &larr; {KARYA_COPY.backToCity}
           </Link>
         </div>
 
-        {/* Header Block */}
-        <header className="mb-14 pb-8 border-b border-[#E4DED3]">
+        {/* Header Block in Dusk Head */}
+        <header className="mb-10 pb-6 border-b border-white/15">
           <div className="flex items-center gap-3 mb-4">
-            <span className="font-serif font-bold text-lg text-[#8B1538]">
+            <span className="font-sans font-bold text-lg text-[#E0316A]">
               {project.number}
             </span>
-            <div className="w-8 h-[1px] bg-[#D4AF37]" aria-hidden="true" />
-            <span className="font-sans text-xs uppercase tracking-wider text-[#5F5A66]">
+            <div className="w-8 h-[2px] bg-[#FFC83D]" aria-hidden="true" />
+            <span className="font-sans text-xs uppercase tracking-wider text-[#FFC83D] font-bold">
               {project.sub}
             </span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight mb-4 text-[#1B1A2E]">
-            {project.name}
-          </h1>
+          <div className="mb-4">
+            <SplitText
+              text={project.name}
+              as="h1"
+              className="text-3xl sm:text-5xl lg:text-6xl text-[#FFF1D6]"
+              shadowColor="#8B1538"
+            />
+          </div>
 
-          <p className="font-sans text-base sm:text-lg text-[#4A453E] leading-relaxed mb-6">
+          <p className="font-sans text-base sm:text-lg text-[#FFF1D6]/85 leading-relaxed mb-6">
             {project.summary}
           </p>
 
           {/* Meta Attributes: Status, Role, Tech */}
-          <div className="flex items-center gap-3 flex-wrap pt-4 text-xs sm:text-sm">
+          <div className="flex items-center gap-3 flex-wrap pt-2 text-xs sm:text-sm">
             <div className="flex-shrink-0">
               {project.status === 'built' && (
-                <span className="px-3 py-1 rounded-full text-xs font-sans font-semibold bg-[#1B1A2E] text-white tracking-wide">
+                <span className="px-3.5 py-1 rounded-full text-xs font-sans font-bold bg-[#FFC83D] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[2px_2px_0_#1A0F24]">
                   Dibangun
                 </span>
               )}
               {project.status === 'building' && (
-                <span className="px-3 py-0.5 rounded-full text-xs font-sans font-semibold border border-[#1B1A2E] text-[#1B1A2E] bg-white tracking-wide">
+                <span className="px-3.5 py-1 rounded-full text-xs font-sans font-bold border-2 border-[#FFC83D] text-[#FFC83D] bg-transparent">
                   Sedang dibangun
                 </span>
               )}
               {project.status === 'concept' && (
-                <span className="px-3 py-0.5 rounded-full text-xs font-sans font-semibold border border-dashed border-[#5F5A66] text-[#5F5A66] bg-transparent tracking-wide">
+                <span className="px-3.5 py-1 rounded-full text-xs font-sans font-bold border-2 border-dashed border-[#FFF1D6] text-[#FFF1D6] bg-transparent">
                   Konsep
                 </span>
               )}
             </div>
 
-            <span className="text-[#5F5A66] italic">Peran: {project.role}</span>
+            <span className="text-[#FFF1D6]/70 italic">Peran: {project.role}</span>
           </div>
 
           {project.tech && project.tech.length > 0 && (
@@ -95,7 +104,7 @@ export const CaseStudyPage: React.FC = () => {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="px-2.5 py-1 rounded-full text-xs font-sans font-medium bg-[#F1ECE1]/80 text-[#4A453E] border border-[#E4DED3]"
+                  className="px-2.5 py-0.5 rounded-full text-xs font-sans font-bold bg-[#FFF1D6] text-[#1A0F24] border border-[#1A0F24]"
                 >
                   {t}
                 </span>
@@ -104,106 +113,101 @@ export const CaseStudyPage: React.FC = () => {
           )}
         </header>
 
-        {/* Case Study Editorial Sections */}
-        <div className="space-y-14">
+        {/* Case Study Content Inside Cream Booth Panel */}
+        <Booth accentColor="#8B1538" className="space-y-12 mb-12">
           {/* Section 1: Masalah */}
           <section aria-labelledby="section-masalah">
-            <h2 id="section-masalah" className="font-serif text-2xl sm:text-3xl font-normal text-[#1B1A2E] mb-4">
+            <h2 id="section-masalah" className="font-display text-2xl sm:text-3xl font-bold text-[#1A0F24] mb-3">
               Masalah & Konteks
             </h2>
             {cs?.problem ? (
-              <p className="font-sans text-base sm:text-lg text-[#4A453E] leading-relaxed">
+              <p className="font-sans text-base sm:text-lg text-[#1A0F24]/90 leading-relaxed">
                 {cs.problem}
               </p>
             ) : (
-              <p className="font-sans text-sm italic text-[#5F5A66]">
+              <p className="font-sans text-sm italic text-[#1A0F24]/60">
                 Menyusul
               </p>
             )}
           </section>
 
           {/* Section 2: Keputusan */}
-          <section aria-labelledby="section-keputusan">
-            <h2 id="section-keputusan" className="font-serif text-2xl sm:text-3xl font-normal text-[#1B1A2E] mb-6">
+          <section aria-labelledby="section-keputusan" className="pt-6 border-t border-[#1A0F24]/15">
+            <h2 id="section-keputusan" className="font-display text-2xl sm:text-3xl font-bold text-[#1A0F24] mb-5">
               Keputusan & Arsitektur
             </h2>
             {cs?.decisions && cs.decisions.length > 0 ? (
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {cs.decisions.map((dec) => (
-                  <div key={dec.number} className="p-5 sm:p-6 rounded-xl bg-white/70 border border-[#E4DED3]">
+                  <div key={dec.number} className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24]">
                     <div className="flex items-baseline gap-3 mb-2">
-                      <span className="font-serif font-bold text-base text-[#8B1538]">
+                      <span className="font-sans font-bold text-base text-[#8B1538]">
                         0{dec.number}
                       </span>
-                      <h3 className="font-serif text-xl sm:text-2xl text-[#1B1A2E]">
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-[#1A0F24]">
                         {dec.title}
                       </h3>
                     </div>
-                    <p className="font-sans text-sm sm:text-base text-[#4A453E] leading-relaxed pl-7">
+                    <p className="font-sans text-sm sm:text-base text-[#1A0F24]/85 leading-relaxed pl-7">
                       {dec.rationale}
                     </p>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="font-sans text-sm italic text-[#5F5A66]">
+              <p className="font-sans text-sm italic text-[#1A0F24]/60">
                 Menyusul
               </p>
             )}
           </section>
 
           {/* Section 3: Pelajaran */}
-          <section aria-labelledby="section-pelajaran">
-            <h2 id="section-pelajaran" className="font-serif text-2xl sm:text-3xl font-normal text-[#1B1A2E] mb-4">
+          <section aria-labelledby="section-pelajaran" className="pt-6 border-t border-[#1A0F24]/15">
+            <h2 id="section-pelajaran" className="font-display text-2xl sm:text-3xl font-bold text-[#1A0F24] mb-3">
               Pelajaran yang Didapat
             </h2>
             {cs?.lessons && cs.lessons.length > 0 ? (
-              <ul className="space-y-3 pl-5 list-disc text-base text-[#4A453E] leading-relaxed marker:text-[#8B1538]">
+              <ul className="space-y-3 pl-5 list-disc text-base text-[#1A0F24]/90 leading-relaxed marker:text-[#8B1538]">
                 {cs.lessons.map((lesson, idx) => (
                   <li key={idx}>{lesson}</li>
                 ))}
               </ul>
             ) : (
-              <p className="font-sans text-sm italic text-[#5F5A66]">
+              <p className="font-sans text-sm italic text-[#1A0F24]/60">
                 Menyusul
               </p>
             )}
           </section>
-        </div>
+        </Booth>
 
-        {/* Previous & Next Navigation */}
+        {/* Previous & Next Navigation with Chunky Buttons */}
         <nav
-          className="mt-20 pt-8 border-t border-[#E4DED3] flex items-center justify-between gap-4 flex-wrap"
+          className="pt-6 border-t border-white/15 flex items-center justify-between gap-4 flex-wrap"
           aria-label="Navigasi karya"
         >
           {prevProject ? (
-            <Link
+            <Button
+              as="link"
               to={`/karya/${prevProject.slug}`}
-              className="group flex flex-col text-left"
+              variant="cream"
+              size="sm"
             >
-              <span className="font-sans text-xs text-[#5F5A66] group-hover:text-[#1B1A2E]">
-                ← {KARYA_COPY.prevWork}
-              </span>
-              <span className="font-serif text-lg sm:text-xl text-[#1B1A2E] group-hover:text-[#8B1538] transition-colors">
-                {prevProject.name}
-              </span>
-            </Link>
+              &larr; {prevProject.name}
+            </Button>
           ) : (
             <div />
           )}
 
           {nextProject ? (
-            <Link
+            <Button
+              as="link"
               to={`/karya/${nextProject.slug}`}
-              className="group flex flex-col text-right ml-auto"
+              variant="gold"
+              size="sm"
+              className="ml-auto"
             >
-              <span className="font-sans text-xs text-[#5F5A66] group-hover:text-[#1B1A2E]">
-                {KARYA_COPY.nextWork} →
-              </span>
-              <span className="font-serif text-lg sm:text-xl text-[#1B1A2E] group-hover:text-[#8B1538] transition-colors">
-                {nextProject.name}
-              </span>
-            </Link>
+              {nextProject.name} &rarr;
+            </Button>
           ) : (
             <div />
           )}
@@ -211,12 +215,11 @@ export const CaseStudyPage: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-xs font-sans text-[#5F5A66] border-t border-[#E4DED3]">
-        <p>© Ridwan Nurdiyanto Putra</p>
+      <footer className="py-8 text-center text-xs font-sans text-[#FFF1D6]/70 border-t border-white/10 bg-[#160B2E]/90 relative z-10">
+        <p>© {new Date().getFullYear()} Ridwan Nurdiyanto Putra</p>
       </footer>
-    </div>
+    </DuskBackground>
   );
 };
 
 export default CaseStudyPage;
-

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { HERO_COPY } from '../../content/rasanara';
 import { useScrollProgress } from '../../hooks/useScrollProgress';
 import { HeroScene } from './HeroScene';
+import { SplitText, SpinBadge, Button } from '../../ui/kit';
 
 export const Hero: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -39,62 +40,81 @@ export const Hero: React.FC = () => {
         {/* Foreground Content */}
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 flex-1 flex flex-col justify-start md:justify-center pointer-events-none">
           <div className="max-w-3xl pointer-events-auto">
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1538]/10 border border-[#8B1538]/20 mb-4 sm:mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" aria-hidden="true" />
-              <span className="text-xs font-sans font-medium tracking-wide text-[#8B1538]">
+            {/* Eyebrow & SpinBadge */}
+            <div className="flex items-center gap-4 mb-4 sm:mb-6">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1538] text-[#FFF1D6] border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24] text-xs font-sans font-bold tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-[#FFC83D]" aria-hidden="true" />
                 {HERO_COPY.eyebrow}
               </span>
+
+              <SpinBadge
+                text="RASA → NARASI · RASANARA"
+                size={70}
+                textColor="#FFC83D"
+                centerColor="#4FD1A1"
+              />
             </div>
 
-            {/* H1 Headline */}
-            <h1 className="font-serif italic text-[#15120F] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.08] tracking-tight text-balance mb-4 sm:mb-6">
-              {HERO_COPY.title}
-            </h1>
+            {/* H1 Headline with SplitText and sticker shadow */}
+            <div className="mb-4 sm:mb-6">
+              <SplitText
+                text={HERO_COPY.title}
+                as="h1"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.08]"
+                shadowColor="#8B1538"
+              />
+            </div>
 
             {/* Subtitle */}
-            <p className="font-sans text-sm sm:text-base md:text-lg text-[#6B6458] leading-relaxed max-w-2xl mb-6 sm:mb-8 text-pretty">
+            <p className="font-sans text-sm sm:text-base md:text-lg text-[#FFF1D6]/90 leading-relaxed max-w-2xl mb-6 sm:mb-8 text-pretty drop-shadow-sm">
               {HERO_COPY.subtitle}
             </p>
 
-            {/* CTAs */}
+            {/* Chunky CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              <a
+              <Button
+                as="a"
                 href={HERO_COPY.primaryCtaHref}
-                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-full bg-[#8B1538] hover:bg-[#6e102c] active:scale-[0.98] text-white text-xs sm:text-sm font-sans font-medium shadow-md shadow-[#8B1538]/15 transition-all text-center focus-visible:outline-2 focus-visible:outline-[#8B1538] focus-visible:outline-offset-2"
+                variant="burgundy"
+                size="lg"
+                className="shadow-[4px_4px_0_#1A0F24]"
               >
                 {HERO_COPY.primaryCta}
-              </a>
-              <a
+              </Button>
+              <Button
+                as="a"
                 href={HERO_COPY.secondaryCtaHref}
-                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-full bg-white/80 hover:bg-white border border-[#E4DED3] hover:border-[#15120F]/30 active:scale-[0.98] text-[#15120F] text-xs sm:text-sm font-sans font-medium transition-all text-center focus-visible:outline-2 focus-visible:outline-[#15120F] focus-visible:outline-offset-2"
+                variant="cream"
+                size="lg"
+                className="shadow-[4px_4px_0_#1A0F24]"
               >
                 {HERO_COPY.secondaryCta}
-              </a>
+              </Button>
             </div>
           </div>
         </div>
 
         {/* Bottom Captions: Rasa -> Narasi */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between pointer-events-none select-none text-xs sm:text-sm font-sans font-medium tracking-wide">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between pointer-events-none select-none text-xs sm:text-sm font-sans font-bold tracking-wide">
           <div
-            className="transition-opacity duration-300 flex items-center gap-2"
+            className="transition-opacity duration-300 flex items-center gap-2 bg-[#1A0F24]/80 px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-sm"
             style={{ opacity: rasaOpacity }}
           >
-            <span className="w-2 h-2 rounded-full bg-[#8B1538]" aria-hidden="true" />
-            <span className="text-[#6B6458]">{HERO_COPY.captions.rasa}</span>
+            <span className="w-2 h-2 rounded-full bg-[#E0316A]" aria-hidden="true" />
+            <span className="text-[#FFF1D6]">{HERO_COPY.captions.rasa}</span>
           </div>
 
           <div
-            className="transition-opacity duration-300 flex items-center gap-2 text-right"
+            className="transition-opacity duration-300 flex items-center gap-2 text-right bg-[#1A0F24]/80 px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-sm"
             style={{ opacity: narasiOpacity }}
           >
-            <span className="text-[#8B1538] font-semibold">{HERO_COPY.captions.narasi}</span>
-            <span className="w-2 h-2 rounded-full bg-[#D4AF37]" aria-hidden="true" />
+            <span className="text-[#FFC83D] font-bold">{HERO_COPY.captions.narasi}</span>
+            <span className="w-2 h-2 rounded-full bg-[#4FD1A1]" aria-hidden="true" />
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 

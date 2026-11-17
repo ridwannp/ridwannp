@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { RASA_NARASI_CONTENT } from '../../content/rasanara';
-import { Reveal } from './Reveal';
+import { Reveal } from '../../ui/kit';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const RasaNarasi: React.FC = () => {
@@ -35,54 +35,60 @@ export const RasaNarasi: React.FC = () => {
   }, [prefersReduced]);
 
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 border-t border-[#E4DED3] bg-[#FBFAF7] overflow-hidden">
+    <section id="rasa-dan-narasi" className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 border-t border-white/10 bg-transparent overflow-hidden">
       <div className="max-w-5xl mx-auto" ref={containerRef}>
         <Reveal>
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" aria-hidden="true" />
-            <span className="text-xs font-sans font-medium uppercase tracking-widest text-[#8B1538]">
+            <span className="w-2 h-2 rounded-full bg-[#FFC83D]" aria-hidden="true" />
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#FFC83D]">
               {RASA_NARASI_CONTENT.eyebrow}
             </span>
           </div>
         </Reveal>
 
-        {/* Two Giant Words with expanding Gold Line */}
+        {/* Two Giant Words with expanding Glowing Gold Line */}
         <div className="my-8 sm:my-14">
-          {/* Desktop Layout: Horizontal with long expanding line between */}
+          {/* Desktop Layout */}
           <div className="hidden sm:flex items-center justify-between gap-6">
-            <span className="font-serif italic font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#8B1538] shrink-0">
+            <span className="font-serif italic font-bold text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-[#E0316A] shrink-0 drop-shadow-[0_2px_12px_rgba(224,49,106,0.35)]">
               {RASA_NARASI_CONTENT.titleWord1}
             </span>
 
-            {/* Expanding gold line */}
-            <div className="flex-1 h-[2px] bg-[#E4DED3] relative overflow-hidden">
+            {/* Expanding glowing gold line */}
+            <div className="flex-1 h-[3px] bg-white/15 relative overflow-hidden rounded-full">
               <div
-                className="absolute inset-0 bg-[#D4AF37] transition-transform duration-1000 ease-out origin-left"
+                className="absolute inset-0 bg-[#FFC83D] shadow-[0_0_14px_rgba(255,200,61,0.9)] transition-transform duration-1000 ease-out origin-left rounded-full"
                 style={{
                   transform: isIntersecting || prefersReduced ? 'scaleX(1)' : 'scaleX(0)',
                 }}
               />
             </div>
 
-            <span className="font-serif italic font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#15120F] shrink-0">
+            <span
+              className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#FFF1D6] shrink-0"
+              style={{ textShadow: '4px 4px 0 #8B1538' }}
+            >
               {RASA_NARASI_CONTENT.titleWord2}
             </span>
           </div>
 
-          {/* Mobile Layout: Stacked vertically with short horizontal gold line between */}
+          {/* Mobile Layout */}
           <div className="flex sm:hidden flex-col items-start gap-3">
-            <span className="font-serif italic font-bold text-5xl text-[#8B1538]">
+            <span className="font-serif italic font-bold text-6xl text-[#E0316A]">
               {RASA_NARASI_CONTENT.titleWord1}
             </span>
-            <div className="w-24 h-[2px] bg-[#E4DED3] relative overflow-hidden my-1">
+            <div className="w-32 h-[3px] bg-white/15 relative overflow-hidden my-1 rounded-full">
               <div
-                className="absolute inset-0 bg-[#D4AF37] transition-transform duration-1000 ease-out origin-left"
+                className="absolute inset-0 bg-[#FFC83D] shadow-[0_0_12px_#FFC83D] transition-transform duration-1000 ease-out origin-left rounded-full"
                 style={{
                   transform: isIntersecting || prefersReduced ? 'scaleX(1)' : 'scaleX(0)',
                 }}
               />
             </div>
-            <span className="font-serif italic font-bold text-5xl text-[#15120F]">
+            <span
+              className="font-display font-extrabold text-5xl text-[#FFF1D6]"
+              style={{ textShadow: '3px 3px 0 #8B1538' }}
+            >
               {RASA_NARASI_CONTENT.titleWord2}
             </span>
           </div>
@@ -90,23 +96,23 @@ export const RasaNarasi: React.FC = () => {
 
         {/* Definitions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 my-8 sm:my-12">
-          <Reveal delayIndex={1}>
-            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#E4DED3] shadow-sm">
-              <span className="font-serif italic text-lg sm:text-xl font-bold text-[#8B1538] block mb-2">
+          <Reveal delayMs={60}>
+            <div className="p-6 rounded-2xl bg-[#FFF1D6] border-2 border-[#1A0F24] shadow-[4px_4px_0_#1A0F24]">
+              <span className="font-serif italic text-2xl font-bold text-[#8B1538] block mb-2">
                 Rasa
               </span>
-              <p className="font-sans text-xs sm:text-sm text-[#6B6458] leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-[#1A0F24]/85 leading-relaxed">
                 {RASA_NARASI_CONTENT.rasaDefinition}
               </p>
             </div>
           </Reveal>
 
-          <Reveal delayIndex={2}>
-            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#E4DED3] shadow-sm">
-              <span className="font-serif italic text-lg sm:text-xl font-bold text-[#15120F] block mb-2">
+          <Reveal delayMs={120}>
+            <div className="p-6 rounded-2xl bg-[#FFF1D6] border-2 border-[#1A0F24] shadow-[4px_4px_0_#1A0F24]">
+              <span className="font-display text-xl font-bold text-[#1A0F24] block mb-2">
                 Narasi
               </span>
-              <p className="font-sans text-xs sm:text-sm text-[#6B6458] leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-[#1A0F24]/85 leading-relaxed">
                 {RASA_NARASI_CONTENT.narasiDefinition}
               </p>
             </div>
@@ -114,8 +120,8 @@ export const RasaNarasi: React.FC = () => {
         </div>
 
         {/* Story Paragraph */}
-        <Reveal delayIndex={3} className="my-4 sm:my-8">
-          <p className="font-sans text-sm sm:text-base md:text-lg text-[#15120F] leading-relaxed max-w-6xl">
+        <Reveal delayMs={180} className="my-4 sm:my-8">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-[#FFF1D6]/90 leading-relaxed max-w-6xl">
             {RASA_NARASI_CONTENT.paragraph}
           </p>
         </Reveal>
@@ -123,4 +129,5 @@ export const RasaNarasi: React.FC = () => {
     </section>
   );
 };
+
 
