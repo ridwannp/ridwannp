@@ -6,7 +6,7 @@ import { JOURNEY_INTRO, STOPS } from '../data/journey';
 import { DownloadCvButton } from '../components/DownloadCvButton';
 import { YearPills } from '../components/YearPills';
 import { InfoCard } from '../components/InfoCard';
-import { DuskBackground, SpinBadge, DecorLayer, SplitText } from '../ui/kit';
+import { SpinBadge, DecorLayer, SplitText } from '../ui/kit';
 import styles from '../styles/JourneyPage.module.css';
 import '../styles/tokens.css';
 
@@ -49,7 +49,6 @@ const CvPage: React.FC<CvPageProps> = ({
 
   return (
     <div className={styles.outer}>
-      {/* <DuskBackground variant="calm" /> */}
       <DecorLayer />
 
       {/* Fixed download button */}
