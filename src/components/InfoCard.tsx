@@ -55,6 +55,11 @@ function DoorContent({
         <a href={`mailto:${email}`} className={styles.btnDark}>
           Kirim email
         </a>
+        {cvUrl && (
+          <a href={cvUrl} download className={styles.btnOutline} aria-label="Unduh CV">
+            Unduh CV
+          </a>
+        )}
         <Link to="/" className={styles.btnOutline}>
           ← Teras
         </Link>
