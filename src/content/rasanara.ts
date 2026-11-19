@@ -29,7 +29,7 @@ export const SHOW_FREE_OFFER = false;
 export const EMAIL = 'ridwannurdiyanto93@gmail.com';
 
 export const NAV_COPY = {
-  backToTerrace: '← Teras',
+  backToTerrace: 'Teras',
   toCv: 'Lihat perjalanannya',
   brand: 'Rasanara',
   tagline: 'Digital Partner',
@@ -178,22 +178,22 @@ export const PRINCIPLES_CONTENT = {
     {
       title: 'Setiap Bisnis Punya Cerita',
       description:
-        'Kami percaya setiap bisnis punya perjalanan, tantangan, dan cara kerja yang berbeda.',
+        'Setiap bisnis memiliki tujuan, tantangan, dan cara kerja yang berbeda. Karena itu, setiap pendekatan perlu dimulai dengan memahami konteksnya.',
     },
     {
-      title: 'Dengarkan Sebelum Memberi Solusi',
+      title: 'Berangkat dari Kebutuhan Bisnis',
       description:
-        'Memahami apa yang benar-benar dibutuhkan jauh lebih penting daripada terburu-buru menawarkan solusi.',
+        'Kami memahami tujuan, tantangan, dan prioritas bisnis sebelum menentukan solusi dan langkah yang tepat.',
     },
     {
-      title: 'Teknologi Harus Memudahkan',
+      title: 'Teknologi yang Bekerja untuk Bisnis',
       description:
-        'Teknologi hadir untuk membantu pekerjaan manusia, bukan membuatnya semakin rumit.',
+        'Bukan tentang seberapa canggih teknologinya, tetapi seberapa besar manfaatnya dalam meningkatkan cara kerja dan kinerja bisnis.',
     },
     {
-      title: 'Tumbuh Bersama, Bukan Sekadar Selesai',
+      title: 'Menjaga Bisnis Tetap Adaptif',
       description:
-        'Hubungan baik tidak berhenti ketika proyek selesai. Kami ingin solusi yang dibangun terus memberi manfaat seiring bisnis berkembang.',
+        'Kami ingin menjadi bagian dari perjalanan bisnis dalam menghadapi perubahan, memperbaiki proses, dan menemukan peluang untuk terus berkembang.',
     },
   ] as PrincipleItem[],
 };
@@ -213,15 +213,15 @@ export const RASA_NARASI_CONTENT = {
 };
 
 export const CLOSING_CONTENT = {
-  heading: 'Ceritakan satu proses yang paling merepotkan di bisnis Anda.',
+  heading: 'Apa yang selama ini menghambat bisnis Anda berkembang?',
   intro:
-    'Kami mulai dengan mendengarkan, bukan menjual. Dari situ kita lihat bersama apakah memang ada yang bisa dibantu, dan seberapa kecil langkah pertamanya.',
+    'Kami membantu melihat proses bisnis dari sudut pandang yang berbeda, menemukan peluang, dan menentukan langkah perbaikan yang tepat.',
   ctaEmail: 'Kirim pesan',
   emailSubject: 'Konsultasi Rasanara',
   ctaWhatsApp: 'Hubungi via WhatsApp',
   whatsappMessage: 'Halo Rasanara, saya ingin mendiskusikan proses di bisnis saya.',
   closingItalic:
-    'Teknologi baru berarti ketika ia menghargai waktu dan harapan orang yang memakainya.',
+    'Inovasi bukan sekadar menciptakan hal baru, tetapi menghadirkan manfaat yang nyata bagi bisnis.',
   freeOfferText:
     'Sesi evaluasi proses terarah (khusus untuk pemetaan alur operasional awal).',
 };
