@@ -27,8 +27,7 @@ export const Booth: React.FC<BoothProps> = ({
       aria-label={ariaLabel}
       className={`kit-booth-panel text-[#1A0F24] ${className}`}
       style={{
-        boxShadow: `9px 9px 0 ${accentColor}`,
-        padding: '2rem',
+        boxShadow: `7px 7px 0 ${accentColor}`,
         ...style,
       }}
     >

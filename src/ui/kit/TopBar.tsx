@@ -31,11 +31,11 @@ export const TopBar: React.FC<TopBarProps> = ({
         paddingTop: 'max(0.75rem, env(safe-area-inset-top))',
       }}
     >
-      <div className="max-w-[1180px] mx-auto flex items-center justify-between gap-3">
+      <div className="max-w-[1180px] mx-auto flex items-center justify-between gap-2 sm:gap-3">
         {/* Back Link Button */}
         <Link
           to={backTo}
-          className="kit-chunky-btn pointer-events-auto inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-full bg-[#FFF1D6] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24]"
+          className="kit-chunky-btn pointer-events-auto inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-bold rounded-full bg-[#FFF1D6] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[3px_3px_0_#1A0F24] shrink-0 whitespace-nowrap"
           aria-label={`Kembali ke ${backLabel}`}
         >
           <span aria-hidden="true">&larr;</span> {backLabel}
@@ -44,7 +44,7 @@ export const TopBar: React.FC<TopBarProps> = ({
         {/* Jump Navigation Pills */}
         {jumpLinks.length > 0 && (
           <nav
-            className="pointer-events-auto inline-flex items-center gap-1 p-1 rounded-full border border-white/20 bg-[#1A0F24]/80 backdrop-blur-md max-w-[65vw] overflow-x-auto scrollbar-none"
+            className="pointer-events-auto inline-flex items-center gap-1 p-1 rounded-full border border-white/20 bg-[#1A0F24]/80 backdrop-blur-md max-w-[48vw] sm:max-w-[65vw] overflow-x-auto no-scrollbar"
             aria-label="Navigasi bagian"
           >
             {jumpLinks.map((link) => {

@@ -47,9 +47,10 @@ export const STOPS: Stop[] = [
     role: 'Frontend Developer',
     quote: '"Lebih dari sekadar antarmuka untuk membangun solusi digital yang bermakna."',
     points: [
-      'Telkom Indonesia — Solusi Digital Billing & Reporting',
-      'Astra Group — Platform Layanan Finansial Digital',
-      'HM Sampoerna — Portal Laporan Operasional',
+      'Telkom Indonesia — Billing Data Integration, Monitoring, & Reporting Platform',
+      'Perusahaan Gas Negara (PGN) — Billing & Customer Management',
+      'Astra Group — Identity Matching & Risk Assessment',
+      'HM Sampoerna — Printer Monitoring & Management',
     ],
     tags: ['Frontend Development', 'UI Architecture', 'React.js & Next.js', 'JavaScript & TypeScript', 'API Integration & State Management'],
   },

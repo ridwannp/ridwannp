@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ isReducedMotion }) => {
           aria-label="Digital Playground"
           style={{
             fontFamily: '"Bricolage Grotesque", sans-serif',
-            fontSize: 'clamp(3rem, 7.5vw, 5.5rem)',
+            fontSize: 'clamp(2.15rem, 7.5vw, 5.5rem)',
             fontWeight: 800,
             lineHeight: 1.05,
             color: '#FFF1D6',

@@ -24,7 +24,7 @@ export const TopBar: React.FC = () => {
           variant="gold"
           size="sm"
           className="shadow-[3px_3px_0_#1A0F24]"
-          aria-label="Unduh CV Ridwan Nurdiyanto Putra"
+          aria-label="Unduh CV Rasanara Group"
         >
           Unduh CV
         </Button>

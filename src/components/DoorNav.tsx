@@ -49,7 +49,7 @@ export const DoorNav: React.FC<DoorNavProps> = memo(({
                   onHoverDoor(index);
                 }}
                 onBlur={() => onHoverDoor(null)}
-                className={`relative px-3.5 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-sans font-medium rounded-full cursor-not-allowed select-none transition-all duration-200 ${
+                className={`relative px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-sans font-medium rounded-full cursor-not-allowed select-none whitespace-nowrap shrink-0 transition-all duration-200 ${
                   isHighlighted
                     ? 'bg-[#141218]/5 text-[#5E5669]'
                     : 'text-[#8F879A] hover:text-[#5E5669]'
@@ -79,7 +79,7 @@ export const DoorNav: React.FC<DoorNavProps> = memo(({
                 onHoverDoor(index);
               }}
               onBlur={() => onHoverDoor(null)}
-              className={`relative px-3.5 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-sans font-medium rounded-full transition-all duration-200 select-none ${
+              className={`relative px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-sans font-medium rounded-full transition-all duration-200 select-none whitespace-nowrap shrink-0 ${
                 isHighlighted
                   ? 'bg-white shadow-sm ring-1'
                   : 'text-[#141218] hover:bg-black/5'

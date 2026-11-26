@@ -72,7 +72,7 @@ export const Terrace: React.FC = () => {
 
   return (
     <main
-      className="relative w-screen h-screen overflow-hidden terrace-radial-bg select-none touch-none"
+      className="relative w-screen h-[100dvh] min-h-[100svh] overflow-hidden terrace-radial-bg select-none touch-none"
       {...bindContainer}
       style={{
         cursor: isDragging ? 'grabbing' : 'grab',

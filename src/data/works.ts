@@ -27,7 +27,7 @@ export const WORKS_INTRO = {
   allSectionH2: 'Semua karya',
   allSectionParagraph:
     'Pekerjaan enterprise dijelaskan tanpa data internal. Studi kasus lengkap, termasuk keputusan dan pelajarannya, menyusul satu per satu.',
-  footer: '© Ridwan Nurdiyanto Putra',
+  footer: '© Rasanara Group',
   fallbackText: 'Tampilan 3D tidak bisa dimuat di browser ini. Daftar karya ada di bawah.',
   enterpriseNote: 'Pekerjaan enterprise dijelaskan tanpa data internal. Studi kasus lengkap, termasuk keputusan dan pelajarannya, menyusul satu per satu.',
 };

@@ -22,7 +22,7 @@ export const CaseStudyPage: React.FC = () => {
   // Update SEO Document Title and Meta
   useEffect(() => {
     if (project) {
-      document.title = `${project.name} — Studi Kasus Karya Ridwan Nurdiyanto Putra`;
+      document.title = `${project.name} — Studi Kasus Karya Rasanara Group`;
     }
   }, [project]);
 
@@ -148,7 +148,7 @@ export const CaseStudyPage: React.FC = () => {
                         {dec.title}
                       </h3>
                     </div>
-                    <p className="font-sans text-sm sm:text-base text-[#1A0F24]/85 leading-relaxed pl-7">
+                    <p className="font-sans text-sm sm:text-base text-[#1A0F24]/85 leading-relaxed pl-0 sm:pl-7">
                       {dec.rationale}
                     </p>
                   </div>
@@ -216,7 +216,7 @@ export const CaseStudyPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-8 text-center text-xs font-sans text-[#FFF1D6]/70 border-t border-white/10 bg-[#160B2E]/90 relative z-10">
-        <p>© {new Date().getFullYear()} Ridwan Nurdiyanto Putra</p>
+        <p>© {new Date().getFullYear()} Rasanara Group</p>
       </footer>
     </DuskBackground>
   );

@@ -64,21 +64,29 @@
 @media (max-width: 760px) {
   .container {
     top: 56px;
-    left: 0;
-    right: 0;
+    left: 12px;
+    right: 12px;
     transform: none;
-    width: fit-content;
+    width: auto;
     max-width: calc(100vw - 24px);
     margin: 0 auto;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     gap: 5px;
     padding: 4px 6px;
+  }
+
+  .container::-webkit-scrollbar {
+    display: none;
   }
 
   .pill {
     font-size: 12px;
     padding: 6px 11px;
+    flex-shrink: 0;
   }
 }
 

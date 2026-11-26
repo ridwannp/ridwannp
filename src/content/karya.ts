@@ -84,7 +84,7 @@ export const RAW_PROJECTS: ProjectRaw[] = [
   },
   {
     slug: 'billing-dashboard',
-    name: 'Data Monitoring & Operational Analytics',
+    name: 'Billing Data Integration, Monitoring, & Reporting Platform',
     sub: 'Telkom Indonesia',
     district: 0,
     status: 'built',

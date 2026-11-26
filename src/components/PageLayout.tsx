@@ -77,7 +77,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#8F879A]" />
-            <span>Ridwan Nurdiyanto Putra · Technical Lead · Product Owner · AI / Automation</span>
+            <span>Rasanara Group · Technical Lead · Product Owner · AI / Automation</span>
           </div>
           <div className="flex items-center gap-4">
             <a

@@ -81,9 +81,17 @@
 .kit-booth-panel {
   background-color: #FFF1D6;
   border: 3px solid #1A0F24;
-  border-radius: 28px;
+  border-radius: 22px;
+  padding: 1.25rem;
   position: relative;
   box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .kit-booth-panel {
+    border-radius: 28px;
+    padding: 2rem;
+  }
 }
 
 /* Reduced Motion Overrides */

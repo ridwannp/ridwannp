@@ -186,7 +186,13 @@
   }
 
   .scene {
-    top: 46%;
+    top: 50%;
+  }
+}
+
+@media (max-height: 520px) and (max-width: 920px) {
+  .scene {
+    top: 0;
   }
 }
 

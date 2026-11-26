@@ -1,6 +1,6 @@
-# Teras — Ridwan Nurdiyanto Putra
+# Teras — Rasanara Group
 
-Website personal interaktif **"Teras"** untuk **Ridwan Nurdiyanto Putra** (Lead Frontend Engineer, Product Owner, Founder Rasanara).
+Website personal interaktif **"Teras"** untuk **Rasanara Group** (Lead Frontend Engineer, Product Owner, Founder Rasanara).
 
 Dibangun menggunakan:
 - **React 18** + **TypeScript** (Strict mode)

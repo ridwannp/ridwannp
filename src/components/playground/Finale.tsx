@@ -132,7 +132,7 @@ export const Finale: React.FC = () => {
           opacity: 0.8,
         }}
       >
-        &copy; {new Date().getFullYear()} Ridwan Nurdiyanto Putra &middot; Rasanara
+        &copy; {new Date().getFullYear()} Rasanara Group &middot; Rasanara
       </footer>
     </section>
   );

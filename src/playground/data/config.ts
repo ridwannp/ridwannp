@@ -74,6 +74,6 @@ export const PLAYGROUND_CONFIG = {
     'Tentukan satu tempat resmi untuk mencatat pesanan segera setelah diterima, dan hindari menyimpannya hanya di ruang percakapan.',
   ],
 
-  footer: '© Ridwan Nurdiyanto Putra',
+  footer: '© Rasanara Group',
 };
 

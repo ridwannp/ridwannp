@@ -26,7 +26,7 @@ export const KaryaPage: React.FC = () => {
   // Update Document Title and SEO Metadata
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = 'Karya – Ridwan Nurdiyanto Putra';
+    document.title = 'Karya – Rasanara Group';
 
     let metaDesc = document.querySelector('meta[name="description"]');
     const originalDesc = metaDesc ? metaDesc.getAttribute('content') : null;
@@ -38,7 +38,7 @@ export const KaryaPage: React.FC = () => {
     }
     metaDesc.setAttribute(
       'content',
-      'Koleksi proyek rekayasa digital, sistem enterprise, dan eksperimen produk Ridwan Nurdiyanto Putra.'
+      'Koleksi proyek rekayasa digital, sistem enterprise, dan eksperimen produk Rasanara Group.'
     );
 
     // JSON-LD ItemList for SEO indexing
@@ -87,7 +87,7 @@ export const KaryaPage: React.FC = () => {
 
         {/* 3. Footer */}
         <footer className="py-12 px-4 sm:px-8 border-t border-white/10 bg-[#160B2E]/90 text-xs font-sans text-[#FFF1D6]/70 text-center relative z-20">
-          <p>© {new Date().getFullYear()} Ridwan Nurdiyanto Putra. Semua karya dibangun dengan pertimbangan rekayasa yang cermat.</p>
+          <p>© {new Date().getFullYear()} Rasanara Group. Semua karya dibangun dengan pertimbangan rekayasa yang cermat.</p>
         </footer>
       </DuskBackground>
     </KaryaProvider>

@@ -21,7 +21,7 @@ export const DOORS: Door[] = [
   {
     id: 'rasanara',
     title: 'Rasanara',
-    subtitle: 'Digital Partner & Business Intelligence',
+    subtitle: 'Digital Business Transformation Partner',
     color: '#8B1538',
     textColor: '#8B1538',
     href: '/rasanara',
@@ -38,7 +38,7 @@ export const DOORS: Door[] = [
   },
   {
     id: 'playground',
-    title: 'Digital Playground',
+    title: 'Playground',
     subtitle: 'Mencoba, menemukan, dan membawa pulang alat yang berguna',
     color: '#4FD1A1',
     textColor: '#1E8A63',

@@ -165,39 +165,39 @@ const ProjectRowItem: React.FC<ProjectRowItemProps> = ({
       <button
         type="button"
         onClick={onToggle}
-        className="w-full py-5 sm:py-6 flex items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] rounded-md transition-colors"
+        className="w-full py-4 sm:py-6 flex items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] rounded-md transition-colors gap-2"
         aria-expanded={isOpen}
         aria-controls={`detail-${project.slug}`}
       >
         {/* Red Number Index */}
-        <span className="font-sans font-bold text-base sm:text-lg text-[#E0316A] w-9 sm:w-12 flex-shrink-0">
+        <span className="font-sans font-bold text-sm sm:text-lg text-[#E0316A] w-7 sm:w-12 flex-shrink-0">
           {project.number}
         </span>
 
         {/* Project Name */}
-        <h3 className="font-display text-xl sm:text-2xl md:text-3xl text-[#FFF1D6] tracking-tight font-bold hover:text-[#FFC83D] transition-colors pr-3">
+        <h3 className="font-display text-lg sm:text-2xl md:text-3xl text-[#FFF1D6] tracking-tight font-bold hover:text-[#FFC83D] transition-colors flex-1 min-w-0 pr-1">
           {project.name}
         </h3>
 
         {/* Context / Client Subtitle */}
-        <span className="font-sans text-xs sm:text-sm text-[#FFF1D6]/70 ml-auto mr-4 hidden md:block">
+        <span className="font-sans text-xs sm:text-sm text-[#FFF1D6]/70 ml-auto mr-4 hidden md:block shrink-0">
           {project.sub}
         </span>
 
         {/* Status Badge */}
         <div className="flex-shrink-0">
           {project.status === 'built' && (
-            <span className="px-3 py-1 rounded-full text-[11px] font-sans font-bold bg-[#FFC83D] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[2px_2px_0_#1A0F24] tracking-wide">
+            <span className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-sans font-bold bg-[#FFC83D] text-[#1A0F24] border-2 border-[#1A0F24] shadow-[2px_2px_0_#1A0F24] tracking-wide whitespace-nowrap">
               Dibangun
             </span>
           )}
           {project.status === 'building' && (
-            <span className="px-3 py-0.5 rounded-full text-[11px] font-sans font-bold border-2 border-[#FFC83D] text-[#FFC83D] bg-transparent tracking-wide">
+            <span className="px-2.5 sm:px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-sans font-bold border-2 border-[#FFC83D] text-[#FFC83D] bg-transparent tracking-wide whitespace-nowrap">
               Sedang dibangun
             </span>
           )}
           {project.status === 'concept' && (
-            <span className="px-3 py-0.5 rounded-full text-[11px] font-sans font-bold border-2 border-dashed border-[#FFF1D6]/80 text-[#FFF1D6]/80 bg-transparent tracking-wide">
+            <span className="px-2.5 sm:px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-sans font-bold border-2 border-dashed border-[#FFF1D6]/80 text-[#FFF1D6]/80 bg-transparent tracking-wide whitespace-nowrap">
               Konsep
             </span>
           )}
@@ -205,7 +205,7 @@ const ProjectRowItem: React.FC<ProjectRowItemProps> = ({
 
         {/* Toggle Icon */}
         <span
-          className="w-8 h-8 flex items-center justify-center font-sans text-lg text-[#FFF1D6] ml-3 sm:ml-4 flex-shrink-0 font-bold select-none transition-transform duration-200"
+          className="w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center font-sans text-lg text-[#FFF1D6] ml-1 sm:ml-4 flex-shrink-0 font-bold select-none transition-transform duration-200"
           aria-hidden="true"
         >
           {isOpen ? '×' : '+'}
@@ -220,8 +220,8 @@ const ProjectRowItem: React.FC<ProjectRowItemProps> = ({
           gridTemplateRows: isOpen ? '1fr' : '0fr',
         }}
       >
-        <div className="min-h-0 pl-9 sm:pl-12 pb-6 pr-4 sm:pr-8">
-          <Booth accentColor="#FFC83D" className="!p-5 sm:!p-6 !rounded-2xl">
+        <div className="min-h-0 pl-1 sm:pl-12 pb-5 pr-2 sm:pr-8">
+          <Booth accentColor="#FFC83D" className="!p-4 sm:!p-6 !rounded-2xl">
             {/* Mobile context label if hidden in row */}
             <div className="font-sans text-xs text-[#1A0F24]/70 font-semibold mb-2 md:hidden">
               {project.sub}

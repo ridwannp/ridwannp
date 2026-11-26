@@ -12,7 +12,7 @@ export const Marquee: React.FC<MarqueeProps> = memo(({
   prefersReducedMotion = false,
 }) => {
   const row1Text = 'Developer · Product · AI · Automation · ';
-  const row2Text = 'Ridwan Nurdiyanto Putra — Rasanara Digital Agency & Creative Technology — ';
+  const row2Text = 'Rasanara Group — Digital Business Transformation Partner — Transforming Business Through Insight & Technology —';
 
   const row1Repeated = Array(6).fill(row1Text).join('');
   const row2Repeated = Array(6).fill(row2Text).join('');

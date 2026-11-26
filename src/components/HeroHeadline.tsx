@@ -27,8 +27,8 @@ export const HeroHeadline: React.FC<HeroHeadlineProps> = memo(({ prefersReducedM
   }, []);
 
   return (
-    <div className="absolute top-20 md:top-24 left-6 md:left-12 max-w-xl z-20 pointer-events-none select-none">
-      <h1 className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-[#141218] tracking-tight">
+    <div className="absolute top-[74px] sm:top-24 left-4 right-12 sm:right-auto sm:left-6 md:left-12 max-w-xl z-20 pointer-events-none select-none">
+      <h1 className="font-serif italic text-[1.75rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.12] text-[#141218] tracking-tight">
         {words.map((word, index) => {
           // Stagger 0.1s per word
           const delay = prefersReducedMotion ? '0s' : `${index * 0.1}s`;
